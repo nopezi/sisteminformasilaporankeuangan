@@ -91,18 +91,7 @@ while($d=mysqli_fetch_array($det)){
 
             <tr>
                 <td>Nama Proxy</td>
-                <td>
-                    <select class="form-control" name="nama_proxy">
-                                <?php 
-                                $cbng=mysqli_query($koneksi, "select * from proxy");
-                                while($b=mysqli_fetch_array($cbng)){
-                                    ?>  
-                                    <option value="<?php echo $b['nama_proxy']; ?>"><?php echo $b['nama_proxy'] ?></option>
-                                    <?php 
-                                }
-                                ?>
-                    </select>
-                </td>
+                <td><input id="nama_proxy" type="text" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'] ?>"></td>
             </tr>
 
             <tr>

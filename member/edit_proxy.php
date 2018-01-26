@@ -1,7 +1,5 @@
 <?php 
 
-include 'header.php';
-
 @session_start();
 
     include "../koneksi.php";
@@ -9,7 +7,7 @@ include 'header.php';
     if (@$_SESSION['user']) {
 ?>
 
-
+<?php require_once 'header.php' ?>
 
 <div class="container">
 <div class="panel panel-success" style="padding-top: 100px">
@@ -21,7 +19,7 @@ include 'header.php';
 
 
   <div class="panel-body">
-    <?php
+<?php
 $id_proxy=mysqli_real_escape_string($koneksi, $_GET['id_proxy']);
 $det=mysqli_query($koneksi, "select * from proxy where id_proxy='$id_proxy'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
@@ -76,20 +74,16 @@ while($d=mysqli_fetch_array($det)){
 	</form>
   </div>
 
-        <div class="panel-footer">
-            &copy;Kahyangan Multimedia Finance <b><?php echo date('Y'); ?></b>
-        </div>
+<?php require_once 'footer.php'; ?>
         
-        </div>
+</div>
 </div>
 
 
 
 
 
-	<?php 
-}
-?>
+<?php  } ?>
 
 <?php 
 }else{

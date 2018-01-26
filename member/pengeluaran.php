@@ -1,6 +1,6 @@
 <?php 
 
-include 'header.php';
+
 @session_start();
 
     include "../koneksi.php";
@@ -9,30 +9,7 @@ include 'header.php';
 ?>
 
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-          </button>
-       </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                 <li><a href="index.php">home</a></li>
-                    
-                    
-                    <li><a href="pengeluaran.php" title="">Pengeluaran</a></li>
-                    <li><a href="proxy.php" >Proxy</a></li>
-                    <li><a href="finance.php" >Laporan Finance</a></li>
-
-                    <li class=""><a href="../logout.php" class="dropdown-toggle">Keluar </a></li>
-                </ul>
-            </div>
-    </div>
-</div>
+<?php require_once 'header.php'; ?>
 
 
 <div class="container">
@@ -50,34 +27,40 @@ $id_brg=mysqli_real_escape_string($koneksi, $id_proxy);
 $sql = "select * from keluar where id_keluar='$id_brg'";
 $det=mysqli_query($koneksi, $sql)or die(mysqli_error());
 $d = mysqli_fetch_assoc($det);
+$no =1;
 if ($d['id_keluar']==$id_proxy) {
 	// die(print_r($d));
 	?>
-<table class="table">
+
+<table class="table table-bordered table-hover table-responsive">
+    <span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>
+    <thead>
         <tr>
-            <td><b>Nama Proxy</b></td>
-            <td><?php echo $d['tanggal'] ?></td>
+            <th>No</th>
+            <th>Id Keluar</th>
+            <th>Nama Proxy</th>
+            <th>Tanggal</th>
+            <th>Detail Pengeluaran</th>
+            <th>Jumlah Pengeluaran</th>         
+            <th>Opsi</th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
-            <td><b>Cabang Proxy</b></td>
+            <td><?php echo $no++ ?></td>
+            <td><?php echo $d['id_keluar']; ?> </td>
             <td><?php echo $d['nama_proxy'] ?></td>
-        </tr>
-        <tr>
-            <td><b>Email Proxy</b></td>
+            <td><?php echo $d['tanggal'] ?></td>
             <td><?php echo $d['detail'] ?></td>
-        </tr>
-        <tr>
-            <td><b>Nomor Whatsapp</b></td>
-            <td><?php echo $d['jumlah'] ?></td>
-        </tr>
-        
-        <tr>
-            <td></td>
-            <td>
-                <a href="edit_pengeluaran.php?id_proxy=<?php echo $d['id_proxy']; ?>" class="btn btn-warning">Edit</a>
+            <td>Rp.<?php echo number_format($d['jumlah']) ?>,-</td>
+                                    
+            <td>        
+                <a href="edit_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>" class="btn btn-warning">Edit</a>
+                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
-    </table>
+    </tbody>
+</table>
 
 
 <?php }else { ?>
@@ -102,9 +85,8 @@ if ($d['id_keluar']==$id_proxy) {
 
 	</div>
 	
-	<div class="panel-footer">
-            &copy;Kahyangan Multimedia Finance <b><?php echo date('Y'); ?></b>
-    </div>
+<?php require_once 'footer.php'; ?>
+
 	</div>
 	</div>
 </div>
@@ -114,43 +96,34 @@ if ($d['id_keluar']==$id_proxy) {
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Tambah Data Proxy
+                <h4 class="modal-title">Tambah Data Pengeluaran
                 </div>
                 <div class="modal-body">                
-                    <form action="proxy_act.php" method="post">
+                    <form action="pengeluaran_act.php" method="post">
                         <div class="form-group">
-                            <input name="id_proxy" type="hidden" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
+                            <input name="id_keluar" type="text" class="form-control" id="id_keluar" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Nama proxy</label>
                             <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off">
                         </div>  
+                                                          
                         <div class="form-group">
-                            <label>Cabang</label>                               
-                            <select class="form-control" name="cabang">
-                                <?php 
-                                $cbng=mysqli_query($koneksi, "select * from cabang");
-                                while($b=mysqli_fetch_array($cbng)){
-                                    ?>  
-                                    <option value="<?php echo $b['proxy']; ?>"><?php echo $b['proxy'] ?></option>
-                                    <?php 
-                                }
-                                ?>
-                            </select>
-
-                        </div>                                  
-                        <div class="form-group">
-                            <label>Email Proxy</label>
-                            <input name="email_proxy" type="text" class="form-control" placeholder="email_proxy" autocomplete="off">
+                            <label>Tanggal</label>
+                            <div class="input-group date " data-date="" data-date-format="yyyy-mm-dd">
+                            <input class="form-control" type="text" name="tanggal" readonly="readonly">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                            
                         </div>  
                         <div class="form-group">
-                            <label>Nomor Whatsapp</label>
-                            <input name="no_wa" type="text" class="form-control" placeholder="no_wa" autocomplete="off">
+                            <label>Detail Pengeluaran</label>
+                            <input name="detail" type="text" class="form-control" placeholder="detail" autocomplete="off">
                         </div>
 
                         <div class="form-group">
-                            <label>Lokasi</label>
-                            <input name="lokasi" type="text" class="form-control" placeholder="lokasi" autocomplete="off">
+                            <label>Jumlah</label>
+                            <input name="jumlah" type="text" class="form-control" placeholder="jumlah" autocomplete="off">
                         </div>                                                                  
 
                     </div>
@@ -166,7 +139,16 @@ if ($d['id_keluar']==$id_proxy) {
 
         </div>
 
-    
+
+       
+                
+        
+
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script>
+    $(".input-group.date").datepicker({autoclose: true, todayHighlight: true});
+    </script>   
 </div>
 <?php 
 }else{

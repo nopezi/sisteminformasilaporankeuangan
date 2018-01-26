@@ -25,7 +25,7 @@ include 'header.php';
      <div class="panel-body">
             
      <h3><span class="glyphicon glyphicon-briefcase"></span>  Data Pengeluaran</h3>
-<a href="tambah_pengeluaran.php" type="button" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>Tambah Data</a>
+<!-- <a href="tambah_pengeluaran.php" type="button" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>Tambah Data</a> -->
 
 <!-- <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Entry</button> -->
 <form action="" method="get">

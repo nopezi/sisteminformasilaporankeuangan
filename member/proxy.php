@@ -1,6 +1,5 @@
 <?php 
 
-include 'header.php';
 @session_start();
 
     include "../koneksi.php";
@@ -60,7 +59,7 @@ if ($d['id_proxy']==$id_proxy) {
                 <a href="edit_proxy.php?id_proxy=<?php echo $d['id_proxy']; ?>" class="btn btn-warning">Edit</a>
             </td>
         </tr>
-    </table>
+</table>
 
 
 
