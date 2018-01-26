@@ -7,7 +7,7 @@ if(isset($_POST['login'])){
  
  $sql = mysqli_query($koneksi, "SELECT * FROM user WHERE username='$user' AND pass='$pass'") or die(mysqli_error()); //simpan variabel pilih user
  if(mysqli_num_rows($sql) == 0){ //jika tidak ditemukan
-  echo '<script language="javascript">alert("User tidak ada!"); document.location="index2.php";</script>';
+  echo '<script language="javascript">alert("User tidak ada!"); document.location="index.php";</script>';
  }else{ //jika ditemukan
   $row = mysqli_fetch_assoc($sql);
   if($row['level'] == 'admin'){ // admin berdasarkan level, jika level 1 berarti admin

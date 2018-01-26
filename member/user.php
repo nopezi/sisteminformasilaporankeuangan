@@ -64,6 +64,6 @@ if ($d['id']==$id_proxy) {
 </html>
 <?php 
 }else{
-        header("location:index.php");
+        header("location:../index.php");
 }
 ?>

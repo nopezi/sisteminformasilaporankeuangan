@@ -168,6 +168,6 @@ if (isset($id_proxy)) {
 </div>
 <?php 
 }else{
-        header("location:index.php");
+        header("location:../index.php");
 }
 ?>

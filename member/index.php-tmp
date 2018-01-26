@@ -29,6 +29,6 @@ if (@$_SESSION['user']) {
 	</html>
 	<?php
 } else {
-	header("location:index.php");
+	header("location:../index.php");
 }
 ?>

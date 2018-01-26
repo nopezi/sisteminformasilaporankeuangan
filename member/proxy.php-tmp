@@ -3,7 +3,6 @@ Warning: PHP Startup: Unable to load dynamic library 'C:\xampp\php\ext\php_mysql
  in Unknown on line 0
 <?php
 
-include 'header.php';
 @session_start();
 
 include "../koneksi.php";
@@ -30,7 +29,9 @@ if (@$_SESSION['user']) {
 	$d        = mysqli_fetch_assoc($det);
 	if ($d['id_proxy'] == $id_proxy) {
 		// die(print_r($d));
+
 		?>
+
 
 		<table class="table">
 		        <tr>
@@ -59,22 +60,82 @@ if (@$_SESSION['user']) {
 		                <a href="edit_proxy.php?id_proxy=<?php echo $d['id_proxy'];?>" class="btn btn-warning">Edit</a>
 		            </td>
 		        </tr>
-		    </table>
+		</table>
+
+
 
 		<?php } else {?>
-
+		<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button>
 
 		<?php }?>
 	</div>
 
 	<?php require_once 'footer.php';?>
-	</div>
+		</div>
 		</div>
 	</div>
 
+	<div id="myModal" class="modal fade">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title">Tambah Data Proxy
+	                </div>
+	                <div class="modal-body">
+	                    <form action="proxy_act.php" method="post">
+	                        <div class="form-group">
+	                            <input name="id_proxy" type="hidden" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user'];?>">
+	                        </div>
+	                        <div class="form-group">
+	                            <label>Nama proxy</label>
+	                            <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off">
+	                        </div>
+	                        <div class="form-group">
+	                            <label>Cabang</label>
+	                            <select class="form-control" name="cabang">
+	<?php
+	$cbng = mysqli_query($koneksi, "select * from cabang");
+	while ($b = mysqli_fetch_array($cbng)) {
+		?>
+		                                    <option value="<?php echo $b['proxy'];?>"><?php echo $b['proxy']?></option>
+		<?php
+	}
+	?>
+	</select>
 
+	                        </div>
+	                        <div class="form-group">
+	                            <label>Email Proxy</label>
+	                            <input name="email_proxy" type="text" class="form-control" placeholder="email_proxy" autocomplete="off">
+	                        </div>
+	                        <div class="form-group">
+	                            <label>Nomor Whatsapp</label>
+	                            <input name="no_wa" type="text" class="form-control" placeholder="no_wa" autocomplete="off">
+	                        </div>
+
+	                        <div class="form-group">
+	                            <label>Lokasi</label>
+	                            <input name="lokasi" type="text" class="form-control" placeholder="lokasi" autocomplete="off">
+	                        </div>
+
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+	                        <input type="reset" class="btn btn-danger" value="Reset">
+	                        <input type="submit" class="btn btn-primary" value="Simpan">
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+
+	        </div>
+
+
+	</div>
 	<?php
 } else {
-	header("location:index.php");
+	header("location:../index.php");
 }
 ?>
