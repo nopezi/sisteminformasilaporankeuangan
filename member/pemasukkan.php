@@ -71,8 +71,8 @@ if (isset($id_proxy)) {
             </td>
                                     
             <td>        
-                <a href="edit_pengeluaran.php?id=<?php echo $d['id']; ?>" class="btn btn-warning">Edit</a>
-                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id=<?php echo $d['id']; ?>' }" class="btn btn-danger">Hapus</a>
+                <a href="edit_pemasukkan.php?id_masuk=<?php echo $d['id_masuk']; ?>" class="btn btn-warning">Edit</a>
+                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pemasukkan.php?id=<?php echo $d['id_masuk']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
         <?php } ?>
@@ -122,14 +122,10 @@ if (isset($id_proxy)) {
                 <h4 class="modal-title">Tambah Data Pengeluaran
                 </div>
                 <div class="modal-body">                
-                    <form action="pengeluaran_act.php" method="post">
+                    <form action="pemasukkan_act.php" method="post">
                         <div class="form-group">
-                            <input name="id_keluar" type="text" class="form-control" id="id_keluar" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Nama proxy</label>
-                            <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off">
-                        </div>  
+                            <input name="id_proxy" type="text" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
+                        </div> 
                                                           
                         <div class="form-group">
                             <label>Tanggal</label>
@@ -138,15 +134,31 @@ if (isset($id_proxy)) {
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             </div>
                             
-                        </div>  
-                        <div class="form-group">
-                            <label>Detail Pengeluaran</label>
-                            <input name="detail" type="text" class="form-control" placeholder="detail" autocomplete="off">
                         </div>
 
                         <div class="form-group">
-                            <label>Jumlah</label>
-                            <input name="jumlah" type="text" class="form-control" placeholder="jumlah" autocomplete="off">
+                            <label>Nama Pelanggan</label>
+                            <input name="nama_pelanggan" type="text" class="form-control" id="nama_pelanggan" autocomplete="off">
+                        </div> 
+
+                        <div class="form-group">
+                            <label>Paket</label>
+                            <input name="paket" type="text" class="form-control" placeholder="paket" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nomor Invoice</label>
+                            <input name="no_invoice" type="text" class="form-control" placeholder="no_invoice" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Income</label>
+                            <input name="income" type="text" class="form-control" placeholder="income" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Share Office</label>
+                            <input name="share_office" type="text" class="form-control" placeholder="share_office" autocomplete="off">
                         </div>                                                                  
 
                     </div>

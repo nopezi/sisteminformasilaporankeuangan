@@ -1,11 +1,10 @@
 <?php 
 
-
 @session_start();
 
-    include "../koneksi.php";
+include "../koneksi.php";
 
-    if (@$_SESSION['user']) { 
+if (@$_SESSION['user']) { 
 ?>
 <?php require_once 'header.php'; ?>
 
@@ -16,16 +15,16 @@
 <a class="btn" href="pengeluaran.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
-$id=mysqli_real_escape_string($koneksi, $_GET['id']);
-$det=mysqli_query($koneksi, "select * from keluar where id='$id'")or die(mysql_error());
+$id=mysqli_real_escape_string($koneksi, $_GET['id_masuk']);
+$det=mysqli_query($koneksi, "select * from pemasukkan where id_masuk='$id'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
 ?>                  
-    <form action="update_pengeluaran.php" method="post">
+    <form action="update_pemasukkan.php" method="post">
         <table class="table table-hover table-bordered">
             <tr>
                 <td></td>
-                <td><input type="hidden" name="id" value="<?php echo $d['id'] ?>"></td>
-                <td><input type="hidden" name="id_keluar" value="<?php echo $d['id_keluar'] ?>"></td>
+                <td><input type="hidden" name="id_masuk" value="<?php echo $d['id_masuk'] ?>"></td>
+                <td><input type="hidden" name="id_proxy" value="<?php echo $d['id_proxy'] ?>"></td>
             </tr>
             
             <tr>
@@ -40,21 +39,29 @@ while($d=mysqli_fetch_array($det)){
             </tr>
 
             <tr>
-                <td>Nama Proxy</td>
-                <td><input type="text" class="form-control" name="nama_proxy" value=" <?php echo $d['nama_proxy']; ?> " disabled></td>
+                <td>Nama Pelanggan</td>
+                <td><input type="text" class="form-control" name="nama_pelanggan" value=" <?php echo $d['nama_pelanggan']; ?> "></td>
             </tr>
 
             <tr>
-                <td>Detail Pengeluaran</td>
-                <td><input type="text" class="form-control" name="detail" value="<?php echo $d['detail'] ?>"></td>
+                <td>Paket</td>
+                <td><input type="text" class="form-control" name="paket" value="<?php echo $d['paket'] ?>"></td>
             </tr>
 
             <tr>
-                <td>Jumlah</td>
-                <td><input type="text" class="form-control" name="jumlah" value="<?php echo $d['jumlah'] ?>"></td>
+                <td>Nomor Invoice</td>
+                <td><input type="text" class="form-control" name="no_invoice" value="<?php echo $d['no_invoice'] ?>"></td>
             </tr>
 
-            
+            <tr>
+                <td>Income</td>
+                <td><input type="text" class="form-control" name="income" value="<?php echo $d['income'] ?>"></td>
+            </tr>
+
+            <tr>
+                <td>Share Office</td>
+                <td><input type="text" class="form-control" name="share_office" value="<?php echo $d['share_office'] ?>"></td>
+            </tr>   
             
             <tr>
                 <td></td>

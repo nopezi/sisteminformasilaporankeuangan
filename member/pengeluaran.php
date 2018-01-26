@@ -41,8 +41,6 @@ if (isset($id_proxy)) {
     <thead>
         <tr>
             <th>No</th>
-            <th>Id Keluar</th>
-            <th>Nama Proxy</th>
             <th>Tanggal</th>
             <th>Detail Pengeluaran</th>
             <th>Jumlah Pengeluaran</th>         
@@ -57,8 +55,6 @@ if (isset($id_proxy)) {
         <tr>
 
             <td><?php echo $no++ ?></td>
-            <td><?php echo $d['id_keluar']; ?> </td>
-            <td><?php echo $d['nama_proxy'] ?></td>
             <td><?php echo $d['tanggal'] ?></td>
             <td><?php echo $d['detail'] ?></td>
             <td>Rp.<?php echo number_format($d['jumlah']) ?>,-</td>
@@ -117,7 +113,7 @@ if (isset($id_proxy)) {
                 <div class="modal-body">                
                     <form action="pengeluaran_act.php" method="post">
                         <div class="form-group">
-                            <input name="id_keluar" type="text" class="form-control" id="id_keluar" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
+                            <input name="id_keluar" type="hidden" class="form-control" id="id_keluar" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Nama proxy</label>
