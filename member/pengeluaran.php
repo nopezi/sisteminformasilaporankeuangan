@@ -23,14 +23,20 @@
 	<div class="panel-body">
 <?php
 $id_proxy = $_SESSION['user'];
+
+if (isset($id_proxy)) {
+
 $id_brg=mysqli_real_escape_string($koneksi, $id_proxy);
 $sql = "select * from keluar where id_keluar='$id_brg'";
 $det=mysqli_query($koneksi, $sql)or die(mysqli_error());
-$d = mysqli_fetch_assoc($det);
+
 $no =1;
-if ($d['id_keluar']==$id_proxy) {
-	// die(print_r($d));
-	?>
+if (isset($id_proxy)) {
+
+    // die(print_r($d));
+   
+    
+    ?>
 
 <table class="table table-bordered table-hover table-responsive">
     <span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>
@@ -45,8 +51,13 @@ if ($d['id_keluar']==$id_proxy) {
             <th>Opsi</th>
         </tr>
     </thead>
+    <?php  
+
+            while($d=mysqli_fetch_assoc($det)) { ?>
     <tbody>
+
         <tr>
+
             <td><?php echo $no++ ?></td>
             <td><?php echo $d['id_keluar']; ?> </td>
             <td><?php echo $d['nama_proxy'] ?></td>
@@ -59,20 +70,27 @@ if ($d['id_keluar']==$id_proxy) {
                 <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
+        <?php } ?>
     </tbody>
 </table>
 
 
-<?php }else { ?>
+<?php  }else { ?>
 
 <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button>
 <br>
 <br>
 <center><b>Belum Ada Data</b></center>
 
-<?php } ?>
+<?php } 
 
 
+
+
+
+}
+
+?>
 
 
 
