@@ -12,7 +12,7 @@
 <?php require_once 'header.php'; ?>
 
 
-<div class="container">
+<div class="container-fluid">
 	<div class="">
 	<div class="panel panel-primary" style="padding-top: 100px">
 	<div class="panel-heading">
@@ -34,9 +34,7 @@ $no =1;
 if (isset($id_proxy)) {
 
     // die(print_r($d));
-   
-    
-    ?>
+?>
 
 <table class="table table-bordered table-hover table-responsive">
     <span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>

@@ -51,9 +51,7 @@ while($d=mysqli_fetch_array($det)){
 ?>
         </div>
 
-        <div class="panel-footer">
-            &copy; Nopezi
-        </div>
+<?php require_once 'footer.php'; ?>
         
         </div>
    </div>

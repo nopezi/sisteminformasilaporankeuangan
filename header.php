@@ -45,7 +45,7 @@
                         </ul>
                     </li> -->
                     <li><a href="user.php">Login Admin Dan Proxy</a></li>
-                    <li><a href="pemasukkan.php">Pemasukkan</a></li>
+                    <li><a href="pemasukan.php">Pemasukan</a></li>
                     <li><a href="pengeluaran.php" title="">Pengeluaran</a></li>
                     <li><a href="cabang.php" title="">Cabang</a></li>
                     <li><a href="proxy.php" >Proxy</a></li>

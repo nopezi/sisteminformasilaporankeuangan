@@ -98,6 +98,9 @@ include 'header.php';
 		</div>
 	</div>
 </div>
+
+<?php require_once 'footer.php'; ?>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#tgl").datepicker({dateFormat : 'yy/mm/dd'});							
