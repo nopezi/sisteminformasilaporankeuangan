@@ -66,8 +66,8 @@ if (isset($id_proxy)) {
             <td>Rp.<?php echo number_format($d['jumlah']) ?>,-</td>
                                     
             <td>        
-                <a href="edit_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>" class="btn btn-warning">Edit</a>
-                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
+                <a href="edit_pengeluaran.php?id=<?php echo $d['id']; ?>" class="btn btn-warning">Edit</a>
+                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id=<?php echo $d['id']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
         <?php } ?>

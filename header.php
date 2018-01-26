@@ -32,7 +32,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                  <li><a href="home.php">home</a></li>
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jurnal <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="jurnalpembelian.php">Jurnal Pembelian</a></li>
@@ -43,8 +43,9 @@
                           <li class=""><a href="jurnalUmum.php" class="dropdown-toggle">Jurnal Umum </a></li>
                     	  <li class=""><a href="bukuBesar.php" class="dropdown-toggle">Buku Besar </a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li><a href="user.php">Login Admin Dan Proxy</a></li>
+                    <li><a href="pemasukkan.php">Pemasukkan</a></li>
                     <li><a href="pengeluaran.php" title="">Pengeluaran</a></li>
                     <li><a href="cabang.php" title="">Cabang</a></li>
                     <li><a href="proxy.php" >Proxy</a></li>

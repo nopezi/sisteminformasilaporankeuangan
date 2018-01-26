@@ -1,13 +1,12 @@
 <?php 
-include 'header.php'; 
-
-
 
     @session_start();
 
     include "koneksi.php";
 
-    if (@$_SESSION['admin']) {     
+    if (@$_SESSION['admin']) { 
+    	
+    include 'header.php';     
 
 ?>
 
@@ -60,9 +59,7 @@ while($d=mysqli_fetch_array($det)){
 ?>
         </div>
 
-        <div class="panel-footer">
-            &copy;Kahyangan Multimedia Finance <b><?php echo date('Y'); ?></b>
-        </div>
+<?php require_once 'footer.php'; ?>
         
         </div>
    </div>

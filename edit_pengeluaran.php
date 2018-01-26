@@ -3,61 +3,14 @@
 
     include "koneksi.php";
 
-    if (@$_SESSION['admin'] || @$_SESSION['accounting']) {  
+    if (@$_SESSION['admin']) {
+
+    include 'header.php';   
 
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Kahyangan Finance</title>
 
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
- <!--Datepicker CSS-->
-<link rel="stylesheet" href="css/bootstrap-datepicker3.css">
-<link rel="stylesheet" href="css/AdminLTE.min.css">
-
-</head>
-
-<!-- Menu Navbar -->
-
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-          </button>
-       </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                 <li><a href="home.php">home</a></li>
-                    <li class="dropdown">
-                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jurnal <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="jurnalpembelian.php">Jurnal Pembelian</a></li>
-                          <li><a href="jurnalpenjualan.php">Jurnal Penjualan</a></li>
-                          <li><a href="jurnalpenggajian.php">Jurnal Penggajian</a></li>
-                          <li><a href="jurnalkas.php">Jurnal Penerimaan Kas</a></li>
-                          <li><a href="jurnalpengeluaran.php">Jurnal Pengeluaran Kas</a></li>
-                          <li class=""><a href="jurnalUmum.php" class="dropdown-toggle">Jurnal Umum </a></li>
-                          <li class=""><a href="bukuBesar.php" class="dropdown-toggle">Buku Besar </a></li>
-                        </ul>
-                    </li>
-                    
-                    <li><a href="pengeluaran.php" title="">Pengeluaran</a></li>
-                    <li><a href="cabang.php" title="">Cabang</a></li>
-                    <li><a href="proxy.php" >Proxy</a></li>
-                    <li><a href="finance.php" >Laporan Finance</a></li>
-                    <li class=""><a href="logout.php" class="dropdown-toggle">Keluar </a></li>
-                </ul>
-            </div>
-    </div>
-</div>
 
 <!-- end Menu Navbar -->
 
@@ -70,17 +23,18 @@
 
 <div class="panel-body">
 <h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
-<a class="btn" href="proxy.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+<a class="btn" href="pengeluaran.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
-$id_keluar=mysqli_real_escape_string($koneksi, $_GET['id_keluar']);
-$det=mysqli_query($koneksi, "select * from keluar where id_keluar='$id_keluar'")or die(mysql_error());
+$id=mysqli_real_escape_string($koneksi, $_GET['id']);
+$det=mysqli_query($koneksi, "select * from keluar where id='$id'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
 ?>                  
     <form action="update_pengeluaran.php" method="post">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover ">
             <tr>
                 <td></td>
+                <td><input type="hidden" name="id" value="<?php echo $d['id'] ?>"></td>
                 <td><input type="hidden" name="id_keluar" value="<?php echo $d['id_keluar'] ?>"></td>
             </tr>
             
@@ -122,9 +76,7 @@ while($d=mysqli_fetch_array($det)){
 		
 </div>
 
-<div class="panel-footer">
-	&copy;Nopezi || Kahyangan Multimedia	
-</div>	
+<?php require_once 'footer.php'; ?>	
 </div>
 </div>
 

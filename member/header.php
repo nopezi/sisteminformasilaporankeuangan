@@ -33,6 +33,7 @@
                 <ul class="nav navbar-nav">
                 <li><a href="index.php">home</a></li>
                 <li><a href="pengeluaran.php">Pengeluaran</a></li>
+                <li><a href="pemasukkan.php">Pemasukkan</a></li>
                 <li><a href="proxy.php" >Proxy</a></li>
                 <li><a href="user.php">Data Login Proxy</a></li>
                 <li><a href="finance.php" >Laporan Finance</a></li>

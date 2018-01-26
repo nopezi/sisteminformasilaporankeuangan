@@ -16,14 +16,15 @@
 <a class="btn" href="proxy.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
-$id_keluar=mysqli_real_escape_string($koneksi, $_GET['id_keluar']);
-$det=mysqli_query($koneksi, "select * from keluar where id_keluar='$id_keluar'")or die(mysql_error());
+$id=mysqli_real_escape_string($koneksi, $_GET['id']);
+$det=mysqli_query($koneksi, "select * from keluar where id='$id'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
 ?>                  
     <form action="update_pengeluaran.php" method="post">
         <table class="table table-hover table-bordered">
             <tr>
                 <td></td>
+                <td><input type="hidden" name="id" value="<?php echo $d['id'] ?>"></td>
                 <td><input type="hidden" name="id_keluar" value="<?php echo $d['id_keluar'] ?>"></td>
             </tr>
             

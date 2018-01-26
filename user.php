@@ -1,19 +1,19 @@
 <?php 
-include 'header.php'; 
-
-
 
     @session_start();
 
     include "koneksi.php";
 
-    if (@$_SESSION['admin']) {     
+    if (@$_SESSION['admin']) { 
+
+    include 'header.php';    
 
 ?>
 
 <div class="container-fluid">
-	<div class="panel panel-success" style="padding-top: 100px">
-		<div class="panel-body">
+<div class="panel panel-success" style="padding-top: 100px">
+<div class="panel-body">
+
 <h3><span class="glyphicon glyphicon-briefcase"></span>Data Login</h3>
 
 <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button>
@@ -89,9 +89,9 @@ class Random{
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Tambah Data Cabang
-				</div>
-				<div class="modal-body">				
+				<h4 class="modal-title">Tambah Data Cabang</h4>
+			</div>
+			<div class="modal-body">				
 					<form action="user_act.php" method="post">
 
 						<div class="form-group">
@@ -115,19 +115,22 @@ class Random{
 							</select>												
 						</div>																	
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-						<input type="reset" class="btn btn-danger" value="Reset">												
-						<input type="submit" class="btn btn-primary" value="Simpan">
-					</div>
-				</form>
 			</div>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+					<input type="reset" class="btn btn-danger" value="Reset">												
+					<input type="submit" class="btn btn-primary" value="Simpan">
+			</div>
+				</form>
+		</div>
+			
 		</div>
 	</div>
+<?php require_once 'footer.php'; ?>	
 		</div>
 	</div>
 </div>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#tgl").datepicker({dateFormat : 'yy/mm/dd'});							
