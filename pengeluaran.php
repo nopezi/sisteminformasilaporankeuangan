@@ -19,16 +19,20 @@ include 'header.php';
 	
 
 <div class="container-fluid">
-<div class="panel panel-success" style="padding-top: 100px">
+   <div class="panel panel-success" style="padding-top: 100px">
 
-	<div class="panel-heading">
-		<h3><span class="glyphicon glyphicon-briefcase"></span>  Data Proxy</h3>
-		<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button>
-	<form action="" method="get">
+
+     <div class="panel-body">
+            
+     <h3><span class="glyphicon glyphicon-briefcase"></span>  Data Pengeluaran</h3>
+<!-- <a href="tambah_pengeluaran.php" type="button" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>Tambah Data</a> -->
+
+<!-- <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Entry</button> -->
+<form action="" method="get">
 	<div class="input-group col-md-5 col-md-offset-7">
 		<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
-		<select type="submit" name="cabang" class="form-control" onchange="this.form.submit()">
-			<option>Pilih Cabang ..</option>
+		<select type="submit" name="nama_proxy" class="form-control" onchange="this.form.submit()">
+			<option>Pilih Nama ..</option>
 			<?php 
 			$pil=mysqli_query($koneksi, "select distinct nama_proxy from keluar order by nama_proxy desc");
 			while($p=mysqli_fetch_array($pil)){
@@ -40,24 +44,23 @@ include 'header.php';
 		</select>
 	</div>
 
-	</form>
+</form>
 <br/>
-
-<!-- <?php 
-if(isset($_GET['cabang'])){
-	$cabang=mysqli_real_escape_string($koneksi, $_GET['cabang']);
-	$tg="lap_proxy.php?cabang='$cabang'";
+<?php 
+if(isset($_GET['nama_proxy'])){
+	$nama_proxy=mysqli_real_escape_string($koneksi, $_GET['nama_proxy']);
+	$tg="lap_pengeluaran.php?nama_proxy='$nama_proxy'";
 	?><a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Cetak</a><?php
 }else{
-	$tg="lap_proxy.php";
+	$tg="lap_pengeluaran.php";
 }
-?> -->
+?>
 
 <br/>
 <?php 
-if(isset($_GET['cabang'])){
-	echo '<a class="btn" href="proxy.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>';
-	echo "<h4> Data proxy  <a style='color:blue'> ". $_GET['cabang']."</a></h4>";
+if(isset($_GET['nama_proxy'])){
+	echo "<a class='btn' href='pengeluaran.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
+	echo "<h4> Data Pengeluaran Proxy : <a style='color:blue'> ". $_GET['nama_proxy']."</a></h4>";
 }
 ?>
 <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
@@ -97,8 +100,8 @@ if(isset($_GET['cabang'])){
 			<td>Rp.<?php echo number_format($b['jumlah']) ?>,-</td>
 									
 			<td>		
-				<a href="edit_pengeluaran.php?id_keluar=<?php echo $b['id_keluar']; ?>" class="btn btn-warning">Edit</a>
-				<a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $b['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
+				<a href="edit_pengeluaran.php?id=<?php echo $b['id']; ?>" class="btn btn-warning">Edit</a>
+				<a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id=<?php echo $b['id']; ?>' }" class="btn btn-danger">Hapus</a>
 			</td>
 		</tr>
 
