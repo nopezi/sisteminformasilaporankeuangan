@@ -30,6 +30,7 @@
 		<th>username</th>						
 		<th>Password</th>
 		<th>Level</th>
+		<th>Opsi</th>
 	</tr>
 	<?php 
 	$brg=mysqli_query($koneksi, "select * from user");
@@ -89,7 +90,7 @@ class Random{
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Tambah Data Cabang</h4>
+				<h4 class="modal-title">Tambah Data Login</h4>
 			</div>
 			<div class="modal-body">				
 					<form action="user_act.php" method="post">

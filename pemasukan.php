@@ -14,8 +14,21 @@ include 'header.php';
 
 <div class="panel-body">
  
+<h3><span class="glyphicon glyphicon-briefcase"></span>Data Pemasukkan</h3>
 
+<form action="" method="get" accept-charset="utf-8">
 
+	<div class="input-group col-md-offset-7">
+		<span class="input-group-addon" id="basic-addon1">
+			<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+		<select type="submit" name="nama_" multiple>
+				<option value=""></option>
+				option
+		</select>	
+	</div>	
+	
+</form>
 
 
 </div>
