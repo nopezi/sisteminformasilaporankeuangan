@@ -1,16 +1,11 @@
 <?php 
-<<<<<<< HEAD
-include 'header.php';
-
-=======
 
 include 'header.php';
->>>>>>> 55c43cf9d1452ef1286aebc900e7fdd60ea750fd
+
 @session_start();
 
     include "../koneksi.php";
 
-<<<<<<< HEAD
     if (@$_SESSION['user']) {
 ?>
 
@@ -95,20 +90,9 @@ while($d=mysqli_fetch_array($det)){
 	<?php 
 }
 ?>
-<?php 
-}else{
-        header("location:../index.php");
-=======
-    if (@$_SESSION['user']) { 
-?>
-
-<?php require_once 'header.php'; ?>
-
-
 
 <?php 
 }else{
         header("location:index.php");
->>>>>>> 55c43cf9d1452ef1286aebc900e7fdd60ea750fd
 }
 ?>

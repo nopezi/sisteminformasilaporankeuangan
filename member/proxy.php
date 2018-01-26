@@ -29,12 +29,10 @@ $det=mysqli_query($koneksi, $sql)or die(mysql_error());
 $d = mysqli_fetch_assoc($det);
 if ($d['id_proxy']==$id_proxy) {
 	// die(print_r($d));
-<<<<<<< HEAD
-	?>
-=======
-    ?>
 
->>>>>>> 55c43cf9d1452ef1286aebc900e7fdd60ea750fd
+	?>
+
+
 <table class="table">
         <tr>
             <td><b>Nama Proxy</b></td>
@@ -64,27 +62,12 @@ if ($d['id_proxy']==$id_proxy) {
         </tr>
     </table>
 
-<<<<<<< HEAD
+
 
 <?php }else { ?>
 
 <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button>
 
-<?php } ?>
-
-
-
-
-
-
-
-
-
-=======
-<?php }else { ?>
->>>>>>> 55c43cf9d1452ef1286aebc900e7fdd60ea750fd
-
-	
 <?php } ?>
 
 
