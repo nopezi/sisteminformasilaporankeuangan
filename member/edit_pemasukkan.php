@@ -25,7 +25,7 @@ input.error {border-color:red;}
 	<div class="panel panel-primary" style="padding-top: 100px">
 		<div class="panel-body">
 <h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
-<a class="btn" href="pengeluaran.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+<a class="btn" href="pemasukkan.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
 $id=mysqli_real_escape_string($koneksi, $_GET['id_masuk']);

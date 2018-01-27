@@ -49,7 +49,14 @@ if (isset($id_proxy)) {
     // die(print_r($d));
 ?>
 
-<table class="table table-bordered table-hover table-responsive">
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
+        </script>
+
+<table id="example" class="display" cellspacing="0">
     <span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>
     <thead>
         <tr>
@@ -89,6 +96,12 @@ if (isset($id_proxy)) {
             </td>
         </tr>
         <?php } ?>
+<script type="text/javascript">
+    // For demo to fit into DataTables site builder...
+    $('#example')
+        .removeClass( 'display' )
+        .addClass('table table-striped table-bordered table-hover');
+</script>        
     </tbody>
 </table>
 

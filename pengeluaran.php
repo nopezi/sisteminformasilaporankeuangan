@@ -69,6 +69,7 @@ if(isset($_GET['nama_proxy'])){
 				$('#example').DataTable();
 			} );
 		</script>
+		
 <table id="example" class="display" cellspacing="0">
 	<thead>
 		<tr>
