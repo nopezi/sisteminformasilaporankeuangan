@@ -163,6 +163,15 @@ if (isset($id_proxy)) {
                         </div>
 
                         <div class="form-group">
+                            <label>Nama Proxy</label>
+                            <?php 
+                                $brg=mysqli_query($koneksi, "select * from proxy where id_proxy=$id_proxy");
+                                while($b=mysqli_fetch_array($brg)){
+                                    ?>
+                <input name="nama_pelanggan" type="text" class="form-control" id="nama_pelanggan" autocomplete="off" value="<?php echo $b['nama_proxy'] ?>">
+                        </div> 
+                              <?php } ?>
+                        <div class="form-group">
                             <label>Nama Pelanggan</label>
                             <input name="nama_pelanggan" type="text" class="form-control" id="nama_pelanggan" autocomplete="off" required>
                         </div> 

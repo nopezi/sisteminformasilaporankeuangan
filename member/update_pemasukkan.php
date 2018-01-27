@@ -2,6 +2,7 @@
 include '../koneksi.php';
 $id_masuk=$_POST['id_masuk'];
 $id_proxy=$_POST['id_proxy'];
+$nama_proxy = $_POST['nama_proxy'];
 $tanggal=$_POST['tanggal'];
 $nama_pelanggan=$_POST['nama_pelanggan'];
 $paket=$_POST['paket'];
@@ -15,7 +16,8 @@ if($id_masuk == "" || $nama_pelanggan == "" || $no_invoice == ""){
 	echo '<script language="javascript">alert("Isi Semua Data"); document.location="edit_pemasukkan.php?id_masuk='.$id_masuk.'";</script>';
 }else{
 	mysqli_query($koneksi, "update pemasukkan set
-			id_proxy='$id_proxy', 
+			id_proxy='$id_proxy',
+			nama_proxy='$nama_proxy', 
 			tanggal='$tanggal', 
 			nama_pelanggan='$nama_pelanggan', 
 			paket='$paket', 
