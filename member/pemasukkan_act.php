@@ -9,8 +9,12 @@ $income = $_POST['income'];
 $share_office   = $_POST['share_office'];
 
 
+if($tanggal == ""){
+	echo '<script language="javascript">alert("Isi Semua Data"); document.location="pemasukkan.php";</script>';
+}else{
+	mysqli_query($koneksi, "insert into pemasukkan values('', '$id_proxy', '$tanggal','$nama_pelanggan', '$paket', '$no_invoice', '$income', '$share_office')");
+	header("location:pemasukkan.php");
+}
 
-mysqli_query($koneksi, "insert into pemasukkan values('', '$id_proxy', '$tanggal','$nama_pelanggan', '$paket', '$no_invoice', '$income', '$share_office')");
-header("location:pemasukkan.php");
 
  ?>

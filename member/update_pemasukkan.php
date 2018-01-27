@@ -11,7 +11,7 @@ $share_office=$_POST['share_office'];
 
 
 
-if($id_masuk == "" || $nama_pelanggan == ""){
+if($id_masuk == "" || $nama_pelanggan == "" || $no_invoice == ""){
 	echo '<script language="javascript">alert("Isi Semua Data"); document.location="edit_pemasukkan.php?id_masuk='.$id_masuk.'";</script>';
 }else{
 	mysqli_query($koneksi, "update pemasukkan set

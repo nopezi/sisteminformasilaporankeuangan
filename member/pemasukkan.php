@@ -11,6 +11,19 @@
 
 <?php require_once 'header.php'; ?>
 
+<style type="text/css" media="screen">
+
+/** 
+Css validasi
+**/
+.error{color:red;}
+label.error {margin-top:6px;}
+input.error {border-color:red;}
+</style>
+
+<script>
+    $("#form-registrasi").validate();
+</script>
 
 <div class="container-fluid">
     <div class="">
@@ -124,13 +137,13 @@ if (isset($id_proxy)) {
                 <div class="modal-body">                
                     <form action="pemasukkan_act.php" method="post">
                         <div class="form-group">
-                            <input name="id_proxy" type="text" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
+                            <input name="id_proxy" type="hidden" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
                         </div> 
                                                           
                         <div class="form-group">
                             <label>Tanggal</label>
                             <div class="input-group date " data-date="" data-date-format="yyyy-mm-dd">
-                            <input class="form-control" type="text" name="tanggal" readonly="readonly">
+                            <input class="form-control" type="text" name="tanggal" readonly="readonly" required>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             </div>
                             
@@ -138,27 +151,27 @@ if (isset($id_proxy)) {
 
                         <div class="form-group">
                             <label>Nama Pelanggan</label>
-                            <input name="nama_pelanggan" type="text" class="form-control" id="nama_pelanggan" autocomplete="off">
+                            <input name="nama_pelanggan" type="text" class="form-control" id="nama_pelanggan" autocomplete="off" required>
                         </div> 
 
                         <div class="form-group">
                             <label>Paket</label>
-                            <input name="paket" type="text" class="form-control" placeholder="paket" autocomplete="off">
+                            <input name="paket" type="text" class="form-control" placeholder="paket" autocomplete="off" required>
                         </div>
 
                         <div class="form-group">
                             <label>Nomor Invoice</label>
-                            <input name="no_invoice" type="text" class="form-control" placeholder="no_invoice" autocomplete="off">
+                            <input name="no_invoice" type="text" class="form-control" placeholder="no_invoice" autocomplete="off" required>
                         </div>
 
                         <div class="form-group">
                             <label>Income</label>
-                            <input name="income" type="text" class="form-control" placeholder="income" autocomplete="off">
+                            <input name="income" type="text" class="form-control" placeholder="income" autocomplete="off" required>
                         </div>
 
                         <div class="form-group">
                             <label>Share Office</label>
-                            <input name="share_office" type="text" class="form-control" placeholder="share_office" autocomplete="off">
+                            <input name="share_office" type="text" class="form-control" placeholder="share_office" autocomplete="off" required>
                         </div>                                                                  
 
                     </div>
