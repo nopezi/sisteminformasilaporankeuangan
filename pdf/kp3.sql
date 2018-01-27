@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 Jan 2018 pada 07.00
+-- Generation Time: 27 Jan 2018 pada 06.23
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -208,7 +208,8 @@ INSERT INTO `jurnal_penjualan` (`id`, `tgl_penjualan`, `no_akun`, `nama_akun`, `
 --
 
 CREATE TABLE `keluar` (
-  `id_keluar` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
+  `id_keluar` varchar(200) NOT NULL,
   `tanggal` varchar(100) NOT NULL,
   `nama_proxy` varchar(100) NOT NULL,
   `detail` varchar(100) NOT NULL,
@@ -219,11 +220,37 @@ CREATE TABLE `keluar` (
 -- Dumping data untuk tabel `keluar`
 --
 
-INSERT INTO `keluar` (`id_keluar`, `tanggal`, `nama_proxy`, `detail`, `jumlah`) VALUES
-(1, '2018/01/26', 'imam', 'Kartu Nama', '520000'),
-(2, '2017-02-06', 'Dede', 'charger Ht', '420000'),
-(3, '2018/01/22', 'imam', 'Pulsa', '55000'),
-(4, '2018/03/07', 'Yahya', 'kuota data', '50000');
+INSERT INTO `keluar` (`id`, `id_keluar`, `tanggal`, `nama_proxy`, `detail`, `jumlah`) VALUES
+(1, '1', '2018/01/26', 'imam', 'Kartu Nama', '520000'),
+(3, '3', '2018/01/22', 'imam', 'Pulsa', '55000'),
+(4, '4', '2018/03/07', 'Yahya', 'kuota data', '50000'),
+(6, '18', '2018-01-01', 'Dede', 'Pulsa', '50000'),
+(7, '18', '2018-01-08', 'Dede', 'Bensin', '20000');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemasukkan`
+--
+
+CREATE TABLE `pemasukkan` (
+  `id_masuk` int(10) NOT NULL,
+  `id_proxy` int(20) NOT NULL,
+  `tanggal` varchar(200) NOT NULL,
+  `nama_pelanggan` varchar(200) NOT NULL,
+  `paket` varchar(200) NOT NULL,
+  `no_invoice` varchar(30) NOT NULL,
+  `income` int(30) NOT NULL,
+  `share_office` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pemasukkan`
+--
+
+INSERT INTO `pemasukkan` (`id_masuk`, `id_proxy`, `tanggal`, `nama_pelanggan`, `paket`, `no_invoice`, `income`, `share_office`) VALUES
+(1, 18, '2018-01-01', 'je jamuran', 'Ht. 18 Hari', '1', 2700000, 1890000),
+(2, 18, '2018-01-03', '       ', 'coba', '3', 50000, 20000);
 
 -- --------------------------------------------------------
 
@@ -245,12 +272,8 @@ CREATE TABLE `proxy` (
 --
 
 INSERT INTO `proxy` (`id_proxy`, `nama_proxy`, `cabang`, `email_proxy`, `no_wa`, `lokasi`) VALUES
-(1, 'imam', 'Gpro Media', 'gpro@gmail.com', '08567849830', 'gamping'),
-(2, 'Dede', 'Akbar Multimedia', 'dede@gmail.com', '08578940329', 'sleman jogjakarta'),
-(3, 'Yahya', 'Gpro Media', 'yahya@gmail.com', '08578940393', 'Godean'),
-(4, 'ade', 'Akbar Multimedia', 'ade@gmail.com', '087789839283', 'jogja'),
-(5, 'ibnu', 'Sewa Proyektor Murah Jogja (SPMJ)', 'ibnu@gmail.com', '089838728193', 'jogja'),
-(6, 'Edo', 'Cia Media', 'edo@gmail.com', '0898932382', 'jogja');
+(18, 'dede', 'Akbar Multimedia', 'asdasd', '123213', 'asdasd'),
+(98, 'Imam Abdul Lathif', 'Gpro Media', 'ciamediachaptergamping@gmail.com', '085743318914', 'Gamping Lor RT 3 RW 11, Ambarketawang, Gamping, Sleman');
 
 -- --------------------------------------------------------
 
@@ -259,8 +282,8 @@ INSERT INTO `proxy` (`id_proxy`, `nama_proxy`, `cabang`, `email_proxy`, `no_wa`,
 --
 
 CREATE TABLE `user` (
+  `id` varchar(500) NOT NULL,
   `username` varchar(15) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL,
   `pass` varchar(10) NOT NULL,
   `level` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -269,11 +292,12 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`username`, `id`, `pass`, `level`) VALUES
-('admin1', 1, 'admin', 'admin'),
-('manager', 2, 'manager', 'manager'),
-('accounting', 3, 'accounting', 'accounting'),
-('ade', 4, 'ade', 'proxy');
+INSERT INTO `user` (`id`, `username`, `pass`, `level`) VALUES
+('1', 'admin', 'admin', 'admin'),
+('18', 'dede', 'dede', 'proxy'),
+('4', 'ade', 'Sharemore3', 'admin'),
+('46', 'edo', 'Sharemore3', 'proxy'),
+('98', 'imam', 'Sharemore3', 'proxy');
 
 --
 -- Indexes for dumped tables
@@ -325,7 +349,13 @@ ALTER TABLE `jurnal_penjualan`
 -- Indexes for table `keluar`
 --
 ALTER TABLE `keluar`
-  ADD PRIMARY KEY (`id_keluar`);
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Indexes for table `pemasukkan`
+--
+ALTER TABLE `pemasukkan`
+  ADD PRIMARY KEY (`id_masuk`);
 
 --
 -- Indexes for table `proxy`
@@ -382,12 +412,12 @@ ALTER TABLE `jurnal_penjualan`
 -- AUTO_INCREMENT for table `keluar`
 --
 ALTER TABLE `keluar`
-  MODIFY `id_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `pemasukkan`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+ALTER TABLE `pemasukkan`
+  MODIFY `id_masuk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
