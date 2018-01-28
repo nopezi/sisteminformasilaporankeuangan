@@ -27,7 +27,7 @@ $id_proxy = $_SESSION['user'];
 if (isset($id_proxy)) {
 
 $id_brg=mysqli_real_escape_string($koneksi, $id_proxy);
-$sql = "select * from keluar where id_keluar='$id_brg'";
+$sql = "select * from keluar where id_proxy='$id_brg'";
 $det=mysqli_query($koneksi, $sql)or die(mysqli_error());
 
 $no =1;
@@ -60,8 +60,8 @@ if (isset($id_proxy)) {
             <td>Rp.<?php echo number_format($d['jumlah']) ?>,-</td>
                                     
             <td>        
-                <a href="edit_pengeluaran.php?id=<?php echo $d['id']; ?>" class="btn btn-warning">Edit</a>
-                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id=<?php echo $d['id']; ?>' }" class="btn btn-danger">Hapus</a>
+                <a href="edit_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>" class="btn btn-warning">Edit</a>
+                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $d['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
         <?php } ?>
@@ -113,21 +113,28 @@ if (isset($id_proxy)) {
                 <div class="modal-body">                
                     <form action="pengeluaran_act.php" method="post">
                         <div class="form-group">
-                            <input name="id_keluar" type="hidden" class="form-control" id="id_keluar" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
+                            <input name="id_proxy" type="hidden" class="form-control" id="id_proxy" autocomplete="off" value="<?php echo $_SESSION['user']; ?>">
                         </div>
-                        <div class="form-group">
-                            <label>Nama proxy</label>
-                            <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off">
-                        </div>  
+                         
                                                           
                         <div class="form-group">
                             <label>Tanggal</label>
                             <div class="input-group date " data-date="" data-date-format="yyyy-mm-dd">
                             <input class="form-control" type="text" name="tanggal" readonly="readonly">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div>
+                            </div>    
+                        </div>
+
+
+<?php $brg=mysqli_query($koneksi, "select * from proxy where id_proxy=$id_proxy");
+    while($b=mysqli_fetch_array($brg)){ ?>
+
+ 
+                        <div class="form-group">
                             
-                        </div>  
+                            <input name="nama_proxy" type="hidden" class="form-control" placeholder="nama proxy" autocomplete="off" value="<?php echo $b['nama_proxy'] ?>">
+                        </div>
+<?php } ?>
                         <div class="form-group">
                             <label>Detail Pengeluaran</label>
                             <input name="detail" type="text" class="form-control" placeholder="detail" autocomplete="off">

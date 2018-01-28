@@ -3,7 +3,6 @@ Warning: PHP Startup: Unable to load dynamic library 'C:\xampp\php\ext\php_mysql
  in Unknown on line 0
 <?php
 
-include 'header.php';
 @session_start();
 
 include "../koneksi.php";

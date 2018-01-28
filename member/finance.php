@@ -27,7 +27,7 @@ input.error {border-color:red;}
 </script>
 
 <div class="container-fluid">
-<div class="panel panel-success" style="padding-top: 100px">
+<div class="panel panel-success" style="padding-top: 50px">
 
 
 <div class="panel-body">
@@ -104,10 +104,10 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
 <br/>
 <?php 
 if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
-    echo "<a class='btn' href='pemasukkan.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
+    echo "<a class='btn' href='finance.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
     echo "<h4> Data Pengeluaran Proxy : <a style='color:blue'> ". $_GET['bulan']."-".$_GET['tahun']."</a></h4>";
 }elseif (isset($_GET['bulan'])) {
-    echo "<a class='btn' href='pemasukkan.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
+    echo "<a class='btn' href='finance.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
     echo "<h4> Data Pemasukkan Proxy : <a style='color:blue'> ". $_GET['bulan']."</a></h4>";
 }
 ?>
@@ -243,14 +243,14 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
 <!-- DATA PENGELUARAN -->
 
 <div class="container-fluid">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3><span class="glyphicon glyphicon-briefcase"></span>Data Pengeluaran</h3>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3><span class="glyphicon glyphicon-briefcase"></span>Data Pengeluaran</h3>
 
-		</div>
+        </div>
 
-		<div class="panel-body">
-			<span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal2" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>
+        <div class="panel-body">
+            <span><button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal2" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Tambah Data</button></span>
 
 <script type="text/javascript" charset="utf-8">
             $(document).ready(function() {
@@ -283,7 +283,7 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
         $brg=mysqli_query($koneksi, "select * from keluar where id_proxy=$id_proxy");
     }
     $no=1;
-    while($b=mysqli_fetch_array($brg)){ ?>    	
+    while($b=mysqli_fetch_array($brg)){ ?>      
         <tr>
             <td><?php echo $no++ ?></td>
             <td><?php echo $b['tanggal'] ?>-<?php echo $b['bulan'] ?>-<?php echo $b['tahun'] ?></td>
@@ -299,7 +299,7 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
     </tbody>
 
     <tr>
-    	<th colspan="3">Total</th>
+        <th colspan="3">Total</th>
         
         <?php 
         if(isset($id_proxy) AND isset($_GET['bulan']) AND isset($_GET['tahun'])){
@@ -322,41 +322,41 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
         .removeClass( 'display' )
         .addClass('table table-striped table-bordered table-hover');
 </script>
-		</div>
+        </div>
 
-		<?php require_once 'footer.php'; ?>
+        <?php require_once 'footer.php'; ?>
 
-	</div>
+    </div>
 </div>
 
 
 <!-- DATA FINANCE -->
 
-<div class="container-fluid">
-	<div class="panel panel-success">
-	<div class="panel-heading">
-		<h3><span class="glyphicon glyphicon-briefcase"></span>Data Finance</h3>
-	</div>
+<div class="container">
+    <div class="panel panel-success">
+    <div class="panel-heading">
+        <h3><span class="glyphicon glyphicon-briefcase"></span>Data Finance</h3>
+    </div>
 
-	<div class="panel-body">
-	
+    <div class="panel-body">
+    
 
 
     <table class="table table-striped table-bordered table-hover">
-    	<thead>
-    		<tr>
-    			<th>Omset Bulanan</th>
-    			<th>Share Personal Proxy</th>
-    			<th>Share Office</th>
-    			<th>Shadaqah</th>
-    			<th>Share Office After Shadaqah</th>
-    		</tr>
-    	</thead>
+        <thead>
+            <tr>
+                <th>Omset Bulanan</th>
+                <th>Share Personal Proxy</th>
+                <th>Share Office</th>
+                <th>Shadaqah</th>
+                <th>Share Office After Shadaqah</th>
+            </tr>
+        </thead>
 
-    	<tbody>
-    		<tr>
-    			<td>
-    				<?php 
+        <tbody>
+            <tr>
+                <td>
+                    <?php 
         if(isset($id_proxy) AND isset($_GET['bulan']) AND isset($_GET['tahun'])){
         $nama_proxy=mysqli_real_escape_string($koneksi, $id_proxy);
         $bulan=mysqli_real_escape_string($koneksi, $_GET['bulan']);
@@ -366,9 +366,9 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
             ?>
             Rp.<?php echo number_format($xx['total']); ?>,-
 <?php  }else{ } ?>
-    			</td>
-    			<td>
-    				<?php 
+                </td>
+                <td>
+                    <?php 
         if(isset($id_proxy) AND isset($_GET['bulan']) AND isset($_GET['tahun'])){
         $nama_proxy=mysqli_real_escape_string($koneksi, $id_proxy);
         $bulan=mysqli_real_escape_string($koneksi, $_GET['bulan']);
@@ -378,9 +378,9 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
             ?>
             Rp.<?php echo number_format($xx['total']); ?>,-
 <?php  }else{ } ?>
-    			</td>
-    			
-    	<?php 
+                </td>
+                
+        <?php 
         if(isset($id_proxy) AND isset($_GET['bulan']) AND isset($_GET['tahun'])){
         $nama_proxy=mysqli_real_escape_string($koneksi, $id_proxy);
         $bulan=mysqli_real_escape_string($koneksi, $_GET['bulan']);
@@ -400,14 +400,14 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
            <td>Rp.<?php echo number_format($after_shadaqah); ?>,-</td>
 
 <?php  } ?>
-    			<td></td>
-    		</tr>
-    	</tbody>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
 
-	</div>
+    </div>
 
-	</div>
+    </div>
 </div>
 
 

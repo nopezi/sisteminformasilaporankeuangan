@@ -1,6 +1,5 @@
 <?php 
 
-include 'header.php';
     @session_start();
 
     include "../koneksi.php";
@@ -10,14 +9,21 @@ include 'header.php';
 
 <?php require_once 'header.php'; ?>
 
+
+
     <div class="container">
         <div class="panel panel-success" style="padding-top: 100px">
 
-
+<?php 
+    $id = $_SESSION['user']; 
+    $user = mysqli_query($koneksi, "select * from user where id ='$id'");
+    while($u = mysqli_fetch_assoc($user)) { ?>
         <div class="panel-body">
-            <h2><marquee>Selamat Datang di Halaman Proxy </marquee></h2>
+            <center>
+                <h2><small>Hai</small> <?php echo $u['username'] ?> <small>Selamat Datang di Halaman Proxy</small></h2>
+            </center>
         </div>
-
+<?php } ?>
 <?php require_once 'footer.php';  ?>
         
         </div>

@@ -101,8 +101,8 @@ if(isset($_GET['nama_proxy'])){
 			<td>Rp.<?php echo number_format($b['jumlah']) ?>,-</td>
 									
 			<td>		
-				<a href="edit_pengeluaran.php?id=<?php echo $b['id']; ?>" class="btn btn-warning">Edit</a>
-				<a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id=<?php echo $b['id']; ?>' }" class="btn btn-danger">Hapus</a>
+				<a href="edit_pengeluaran.php?id_keluar=<?php echo $b['id_keluar']; ?>" class="btn btn-warning">Edit</a>
+				<a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pengeluaran.php?id_keluar=<?php echo $b['id_keluar']; ?>' }" class="btn btn-danger">Hapus</a>
 			</td>
 		</tr>
 

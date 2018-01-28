@@ -47,7 +47,7 @@ if(isset($_GET['nama_proxy'])){
 <br/>
 <?php 
 if(isset($_GET['nama_proxy'])){
-	echo "<a class='btn' href='pengeluaran.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
+	echo "<a class='btn' href='pemasukkan.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
 	echo "<h4> Data Pengeluaran Proxy : <a style='color:blue'> ". $_GET['nama_proxy']."</a></h4>";
 }
 ?>
@@ -82,13 +82,13 @@ if(isset($_GET['nama_proxy'])){
 		$brg=mysqli_query($koneksi, "select * from pemasukkan order by nama_proxy desc");
 	}
 	$no=1;
-	while($b=mysqli_fetch_array($brg)){
-
-		?>
+	while($b=mysqli_fetch_array($brg)){ ?>
 		<tr>
 			<td><?php echo $no++ ?></td>
 			<td><?php echo $b['nama_proxy'] ?></td>
-			<td><?php echo $b['tanggal'] ?></td>
+			<td>
+                <?php echo $b['bulan'] ?>/<?php echo $b['tanggal'] ?>
+            </td>
 			<td><?php echo $b['nama_pelanggan'] ?></td>
             <td><?php echo $b['paket'] ?></td>
             <td><?php echo $b['no_invoice'] ?></td>
@@ -170,8 +170,7 @@ if(isset($_GET['nama_proxy'])){
 </div>
 </div>
 
-<script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

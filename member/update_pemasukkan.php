@@ -4,6 +4,8 @@ $id_masuk=$_POST['id_masuk'];
 $id_proxy=$_POST['id_proxy'];
 $nama_proxy = $_POST['nama_proxy'];
 $tanggal=$_POST['tanggal'];
+$bulan=$_POST['bulan'];
+$tahun=$_POST['tahun'];
 $nama_pelanggan=$_POST['nama_pelanggan'];
 $paket=$_POST['paket'];
 $no_invoice=$_POST['no_invoice'];
@@ -18,7 +20,9 @@ if($id_masuk == "" || $nama_pelanggan == "" || $no_invoice == ""){
 	mysqli_query($koneksi, "update pemasukkan set
 			id_proxy='$id_proxy',
 			nama_proxy='$nama_proxy', 
-			tanggal='$tanggal', 
+			tanggal='$tanggal',
+			bulan='$bulan',
+			tahun='$tahun', 
 			nama_pelanggan='$nama_pelanggan', 
 			paket='$paket', 
 			no_invoice='$no_invoice',

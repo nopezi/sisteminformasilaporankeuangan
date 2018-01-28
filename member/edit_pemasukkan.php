@@ -37,22 +37,58 @@ while($d=mysqli_fetch_array($det)){
             <tr>
                 <td></td>
                 <td><input type="hidden" name="id_masuk" value="<?php echo $d['id_masuk'] ?>"></td>
-                <td><input type="hidden" name="id_proxy" value="<?php echo $d['id_proxy'] ?>"></td>
+                <td><input type="hidden" name="id_proxy" value="<?php echo $d['id_proxy'] ?>">
+                    <input type="hidden" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'] ?>" required></td>
+
             </tr>
             
             <tr>
                 <td>Tanggal</td>
-                <td>
-                	<!-- <input id="tanggal" type="text" class="form-control" name="tanggal" value="<?php echo $d['tanggal'] ?>"> -->
-                	<div class="input-group date " data-date="" data-date-format="yyyy-mm-dd">
-                       <input class="form-control" type="text" name="tanggal" readonly="readonly" id="tanggal" class="form-control" value="<?php echo $d['tanggal'] ?>" required>
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
+                <td><table>
+                        <thead>
+                            <tr>
+                                <th><label>Tanggal</label></th>
+                                <th><label>Bulan</label></th>
+                                <th>Tahun</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>
+                            <div class="input-group date " data-date="" data-date-format="dd">
+                            <input class="form-control" type="text" name="tanggal" placeholder="masukkan tanggal" readonly="readonly" value="<?php echo $d['tanggal'] ?>" required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                            </td>
+
+                            <td>
+                            <select class="form-control" name="bulan" required>
+                                <option value="januari">januari</option>
+                                <option value="februari">februari</option>
+                                <option value="maret">maret</option>
+                                <option value="april">april</option>
+                                <option value="mei">mei</option>
+                                <option value="juni">juni</option>
+                                <option value="juli">juli</option>
+                                <option value="agustus">agustus</option>
+                                <option value="september">september</option>
+                                <option value="oktober">oktober</option>
+                                <option value="november">november</option>
+                                <option value="desember">desember</option>
+                            </select>
+                            </td>
+
+                            <td>
+                                <input name="tahun" type="text" class="form-control" placeholder="tahun" id="tahun" autocomplete="off" value="<?php echo $d['tahun'] ?>" required>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
 
             <tr>
-                <td>Paket</td>
+                <td>Nama Pelanggan</td>
                 <td><input type="text" class="form-control" name="nama_pelanggan" value="<?php echo $d['nama_pelanggan'] ?>" required></td>
             </tr>
 

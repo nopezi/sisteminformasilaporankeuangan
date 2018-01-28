@@ -21,7 +21,7 @@ if (@$_SESSION['admin'] || @$_SESSION['accounting']) {
 	     <div class="panel-body">
 
 	     <h3><span class="glyphicon glyphicon-briefcase"></span>  Data Pengeluaran</h3>
-	<a href="tambah_pengeluaran.php" type="button" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>Tambah Data</a>
+	<!-- <a href="tambah_pengeluaran.php" type="button" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>Tambah Data</a> -->
 
 	<!-- <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-pencil"></span>  Entry</button> -->
 	<form action="" method="get">
@@ -63,6 +63,7 @@ if (@$_SESSION['admin'] || @$_SESSION['accounting']) {
 					$('#example').DataTable();
 				} );
 			</script>
+
 	<table id="example" class="display" cellspacing="0">
 		<thead>
 			<tr>
@@ -187,10 +188,8 @@ if (@$_SESSION['admin'] || @$_SESSION['accounting']) {
 
 
 	     </div>
-
-	   <div class="panel-footer">&copy; Nopezi</div>
-
-	   </div>
+	<?php require_once 'footer.php';?>
+	</div>
 	</div>
 
 
