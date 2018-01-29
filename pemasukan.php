@@ -47,7 +47,7 @@ if(isset($_GET['nama_proxy'])){
 <br/>
 <?php 
 if(isset($_GET['nama_proxy'])){
-	echo "<a class='btn' href='pemasukkan.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
+	echo "<a class='btn' href='pemasukan.php'><span class='glyphicon glyphicon-arrow-left'></span>  Kembali</a>";
 	echo "<h4> Data Pengeluaran Proxy : <a style='color:blue'> ". $_GET['nama_proxy']."</a></h4>";
 }
 ?>

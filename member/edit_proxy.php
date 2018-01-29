@@ -8,7 +8,19 @@
 ?>
 
 <?php require_once 'header.php' ?>
+<style type="text/css" media="screen">
 
+/** 
+Css validasi
+**/
+.error{color:red;}
+label.error {margin-top:6px;}
+input.error {border-color:red;}
+</style>
+
+<script>
+    $("#form-registrasi").validate();
+</script>
 <div class="container">
 <div class="panel panel-success" style="padding-top: 100px">
 
@@ -32,7 +44,7 @@ while($d=mysqli_fetch_array($det)){
 			</tr>
 			<tr>
 				<td>Nama Proxy</td>
-				<td><input type="text" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'] ?>"></td>
+				<td><input type="text" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'] ?>" required></td>
 			</tr>
 
 			<tr>
@@ -53,17 +65,17 @@ while($d=mysqli_fetch_array($det)){
 
 			<tr>
 				<td>Email Proxy</td>
-				<td><input type="text" class="form-control" name="email_proxy" value="<?php echo $d['email_proxy'] ?>"></td>
+				<td><input type="text" class="form-control" name="email_proxy" value="<?php echo $d['email_proxy'] ?>" required></td>
 			</tr>
 
 			<tr>
 				<td>Nomor Whatsapp</td>
-				<td><input type="text" class="form-control" name="no_wa" value="<?php echo $d['no_wa'] ?>"></td>
+				<td><input type="text" class="form-control" name="no_wa" value="<?php echo $d['no_wa'] ?>" required></td>
 			</tr>
 
 			<tr>
 				<td>Lokasi</td>
-				<td><input type="text" class="form-control" name="lokasi" value="<?php echo $d['lokasi'] ?>"></td>
+				<td><input type="text" class="form-control" name="lokasi" value="<?php echo $d['lokasi'] ?>" required></td>
 			</tr>
 			
 			<tr>

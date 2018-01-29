@@ -165,7 +165,7 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
                                     
             <td>        
                 <a href="edit_pemasukkan.php?id_masuk=<?php echo $b['id_masuk']; ?>" class="btn btn-warning">Edit</a>
-                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pemasukkan.php?id=<?php echo $b['id_masuk']; ?>' }" class="btn btn-danger">Hapus</a>
+                <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_pemasukkan.php?id_masuk=<?php echo $b['id_masuk']; ?>' }" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
 

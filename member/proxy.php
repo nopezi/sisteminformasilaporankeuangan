@@ -9,7 +9,19 @@
 
 
 <?php require_once 'header.php'; ?>
+<style type="text/css" media="screen">
 
+/** 
+Css validasi
+**/
+.error{color:red;}
+label.error {margin-top:6px;}
+input.error {border-color:red;}
+</style>
+
+<script>
+    $("#form-registrasi").validate();
+</script>
 
 <div class="container">
 	<div class="">
@@ -91,7 +103,7 @@ if ($d['id_proxy']==$id_proxy) {
                         </div>
                         <div class="form-group">
                             <label>Nama proxy</label>
-                            <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off">
+                            <input name="nama_proxy" type="text" class="form-control" id="nama_proxy" autocomplete="off" required>
                         </div>  
                         <div class="form-group">
                             <label>Cabang</label>                               
@@ -109,16 +121,16 @@ if ($d['id_proxy']==$id_proxy) {
                         </div>                                  
                         <div class="form-group">
                             <label>Email Proxy</label>
-                            <input name="email_proxy" type="text" class="form-control" placeholder="email_proxy" autocomplete="off">
+                            <input name="email_proxy" type="text" class="form-control" placeholder="email_proxy" autocomplete="off" required>
                         </div>  
                         <div class="form-group">
                             <label>Nomor Whatsapp</label>
-                            <input name="no_wa" type="text" class="form-control" placeholder="no_wa" autocomplete="off">
+                            <input name="no_wa" type="text" class="form-control" placeholder="no_wa" autocomplete="off" required>
                         </div>
 
                         <div class="form-group">
                             <label>Lokasi</label>
-                            <input name="lokasi" type="text" class="form-control" placeholder="lokasi" autocomplete="off">
+                            <input name="lokasi" type="text" class="form-control" placeholder="lokasi" autocomplete="off" required>
                         </div>                                                                  
 
                     </div>

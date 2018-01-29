@@ -8,7 +8,19 @@
  ?>
 
 <?php require_once 'header.php'; ?>
+<style type="text/css" media="screen">
 
+/** 
+Css validasi
+**/
+.error{color:red;}
+label.error {margin-top:6px;}
+input.error {border-color:red;}
+</style>
+
+<script>
+    $("#form-registrasi").validate();
+</script>
 <div class="container">
 <div class="panel panel-success" style="padding-top: 100px">
 
@@ -32,11 +44,11 @@ while($d=mysqli_fetch_array($det)){
             </tr>
             <tr>
                 <td>Username</td>
-                <td><input type="text" class="form-control" name="username" value="<?php echo $d['username'] ?>"></td>
+                <td><input type="text" class="form-control" name="username" value="<?php echo $d['username'] ?>" required></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="password" class="form-control" name="pass" value="<?php echo $d['pass'] ?>"></td>
+                <td><input type="password" class="form-control" name="pass" value="<?php echo $d['pass'] ?>" required></td>
             </tr>
             <tr>
                 <input type="hidden" name="level" value="<?php echo $d['level'] ?>">

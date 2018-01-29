@@ -11,7 +11,8 @@
   <script type="text/javascript" src="../assets/js/jquery.js"></script>
   <script type="text/javascript" src="../assets/js/jquery.js"></script>
   <script type="text/javascript" src="../assets/js/bootstrap.js"></script>
-  <script type="text/javascript" src="../assets/js/jquery-ui/jquery-ui.js"></script>  
+  <script type="text/javascript" src="../assets/js/jquery-ui/jquery-ui.js"></script>
+  <script src="../js/Chart.bundle.js"></script>  
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
 

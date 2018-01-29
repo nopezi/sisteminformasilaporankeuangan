@@ -26,6 +26,7 @@ if ($d['id']==$id_proxy) {
 
     ?>
 
+
     <table class="table">
         <tr>
             <td><b>Username</b></td>

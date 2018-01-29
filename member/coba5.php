@@ -12,38 +12,37 @@
 
 
 <div class="container">
-<div class="panel panel-success" style="padding-top: 100px">
+        <div class="panel panel-success" style="padding-top: 100px">
 
         
 
         <div class="panel-body">
-<?php 
-$id = $_SESSION['user']; 
-$user = mysqli_query($koneksi, "select * from user where id ='$id'");
-while($u = mysqli_fetch_assoc($user)) { ?>
+            <?php 
+    $id = $_SESSION['user']; 
+    $user = mysqli_query($koneksi, "select * from user where id ='$id'");
+    while($u = mysqli_fetch_assoc($user)) { ?>
             <center>
                 <h2><small>Hai</small> <?php echo $u['username'] ?> <small>Selamat Datang di Halaman Proxy</small></h2>
             </center>
-<?php } ?>
+    <?php } ?>
         
         </div>
 
         
-</div>
-
-
-<div class="panel panel-success">
-            <?php
+        </div>
+<?php
 $id = $_SESSION['user'];
 $tahun = date('Y');
 $bulan       = mysqli_query($koneksi, "SELECT DISTINCT bulan FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' order by id_proxy asc");
 $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' order by id_proxy asc");
 ?>
-        <div class="panel-heading">
-            <center><h1><label>Statistik Omset Proxy Perbulan</label></h1></center>  
+        <div class="panel panel-success">
+            <div class="panel-heading">
+            <center><h1><label>Statistik Omset Proxy Perbulan</label></h1></center>
+            
         </div>
             <div class="panel-body">
-                <div class="">
+                <div class="container">
             <canvas id="myChart" width="100" height="20"></canvas>
         </div>
         <script>
@@ -98,8 +97,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
             });
         </script>
             </div>
-</div>
-
+        </div>
 </div>
 
 
