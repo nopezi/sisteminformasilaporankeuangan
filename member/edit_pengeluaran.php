@@ -80,7 +80,7 @@ while($d=mysqli_fetch_array($det)){
                             <td>
                                 <input name="tahun" type="text" class="form-control" placeholder="tahun" id="tahun" autocomplete="off" value="<?php echo $d['tahun'] ?>" required>
                             </td>
-                        </tr>
+            </tr>
                     </tbody>
                 </table>
             </tr>

@@ -28,7 +28,7 @@ if (@$_SESSION['user']) {
 		<div class="panel panel-primary" style="padding-top: 100px">
 			<div class="panel-body">
 	<h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
-	<a class="btn" href="pemasukkan.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+	<a class="btn" href="finance.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 	<?php
 	$id  = mysqli_real_escape_string($koneksi, $_GET['id_masuk']);
@@ -107,12 +107,17 @@ if (@$_SESSION['user']) {
 
 		            <tr>
 		                <td>Income</td>
-		                <td><input type="text" class="form-control" name="income" value="<?php echo $d['income']?>" required></td>
+		                <td><input type="text" class="form-control" name="income" value="<?php echo $d['income']?>" id="txt1" onkeyup="sum();"  required></td>
 		            </tr>
 
 		            <tr>
 		                <td>Share Office</td>
-		                <td><input type="text" class="form-control" name="share_office" value="<?php echo $d['share_office']?>" required></td>
+		                <td><input type="text" class="form-control" name="share_office" value="<?php echo $d['share_office']?>" id="txt2" onkeyup="sum();" required></td>
+		            </tr>
+
+		            <tr>
+		                <td>Share Proxy</td>
+		                <td><input name="share_proxy" type="text" class="form-control" placeholder="share_proxy" autocomplete="off" value="<?php echo $d['share_proxy']?>" id="txt3" required></td>
 		            </tr>
 
 		            <tr>
@@ -124,6 +129,17 @@ if (@$_SESSION['user']) {
 		<?php
 	}
 	?>
+	<script>
+	function sum() {
+	      var txtFirstNumberValue = document.getElementById('txt1').value;
+	      var txtSecondNumberValue = document.getElementById('txt2').value;
+	      var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+	      if (!isNaN(result)) {
+	         document.getElementById('txt3').value = result;
+	      }
+	}
+	</script>
+
 	<script type="text/javascript">
 	    function validasi() {
 	        var tanggal = document.getElementById("tanggal").value;

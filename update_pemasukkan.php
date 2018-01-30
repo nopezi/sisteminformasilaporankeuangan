@@ -1,5 +1,5 @@
 <?php 
-include '../koneksi.php';
+include 'koneksi.php';
 $id_masuk=$_POST['id_masuk'];
 $id_proxy=$_POST['id_proxy'];
 $nama_proxy = $_POST['nama_proxy'];
@@ -31,7 +31,7 @@ if($id_masuk == "" || $nama_pelanggan == "" || $no_invoice == ""){
 			share_office='$share_office',
 			share_proxy='$share_proxy'
 			where id_masuk='$id_masuk'");
-header("location:finance.php");
+header("location:finance.php?id_proxy=$id_proxy");
 }
 
 ?>

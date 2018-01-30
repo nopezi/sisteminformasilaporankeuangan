@@ -15,11 +15,12 @@ if($tanggal == "" || $bulan == ""){
 }else{
 mysqli_query($koneksi, "update keluar set
 			id_proxy='$id_proxy', 
-			tanggal='$tanggal', 
+			tanggal='$tanggal',
+			tahun='$tahun', 
 			nama_proxy='$nama_proxy', 
 			detail='$detail', 
 			jumlah='$jumlah'
 			where id_keluar='$id_keluar'");
-header("location:finance.php");
+header("location:finance.php?id_proxy=$id_proxy");
 }
 ?>

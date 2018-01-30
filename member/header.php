@@ -33,7 +33,7 @@
        </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="index.php">home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <!-- <li><a href="pengeluaran.php">Pengeluaran</a></li>
                 <li><a href="pemasukkan.php">Pemasukkan</a></li> -->
                 <li><a href="proxy.php" >Proxy</a></li>

@@ -1,0 +1,58 @@
+
+Warning: PHP Startup: Unable to load dynamic library 'C:\xampp\php\ext\php_mysql.dll' - The specified module could not be found.
+ in Unknown on line 0
+<?php
+
+@session_start();
+
+include "koneksi.php";
+
+if (@$_SESSION['admin']) {
+	?>
+
+	<?php require_once 'header.php';?>
+	<style>
+		#ex4{
+			border: 1px solid black;
+			padding: 10px 10px 10px;
+			margin-top: 10px;
+			transition: background 2s;
+			border-radius: 10px;
+		}
+		#ex4:hover {
+			background: skyblue;
+		}
+	</style>
+
+	</head>
+
+	<body>
+
+	<?php
+
+	$proxy = mysqli_query($koneksi, "SELECT * FROM proxy");
+
+	?>
+	<div class="container-fluid">
+	<div class="panel panel-primary" style="padding-top: 100px">
+		<div class="panel-body">
+	<?php while ($p = mysqli_fetch_assoc($proxy)):?>
+			<div class="col-md-4">
+				<div class="" id="ex4">
+					<h1><?php echo $p['nama_proxy'];?></h1>
+				</div>
+			</div>
+	<?php endwhile;?>
+	</div>
+	<?php require_once 'footer.php';?>
+	</div>
+	</div>
+
+
+	</body>
+	</html>
+	<?php
+} else {
+	header("location:index.php");
+}
+?>

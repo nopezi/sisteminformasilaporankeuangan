@@ -5,9 +5,9 @@ Warning: PHP Startup: Unable to load dynamic library 'C:\xampp\php\ext\php_mysql
 
 @session_start();
 
-include "../koneksi.php";
+include "koneksi.php";
 
-if (@$_SESSION['user']) {
+if (@$_SESSION['admin']) {
 	?>
 	<?php require_once 'header.php';?>
 	<style type="text/css" media="screen">
@@ -23,23 +23,28 @@ if (@$_SESSION['user']) {
 	<script>
 	    $("#form-registrasi").validate();
 	</script>
+
 	<div class="container">
 		<div class="panel panel-primary" style="padding-top: 100px">
 			<div class="panel-body">
 	<h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
-	<a class="btn" href="finance.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+
 
 	<?php
-	$id_keluar = mysqli_real_escape_string($koneksi, $_GET['id_keluar']);
-	$det       = mysqli_query($koneksi, "select * from keluar where id_keluar='$id_keluar'") or die(mysql_error());
+	$id  = mysqli_real_escape_string($koneksi, $_GET['id_masuk']);
+	$det = mysqli_query($koneksi, "select * from pemasukkan where id_masuk='$id'") or die(mysql_error());
 	while ($d = mysqli_fetch_array($det)) {
 		?>
-		    <form action="update_pengeluaran.php" method="post">
+
+		<a class="btn" href="finance.php?id_proxy=<?php echo $d['id_proxy']?>"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+		    <form id="form-registrasi" action="update_pemasukkan.php" method="post" class="panel panel-primary form-horizontal">
 		        <table class="table table-hover table-bordered">
 		            <tr>
 		                <td></td>
-		                <td><input type="hidden" name="id_keluar" value="<?php echo $d['id_keluar']?>"></td>
-		                <td><input type="hidden" name="id_proxy" value="<?php echo $d['id_proxy']?>"></td>
+		                <td><input type="hidden" name="id_masuk" value="<?php echo $d['id_masuk']?>"></td>
+		                <td><input type="hidden" name="id_proxy" value="<?php echo $d['id_proxy']?>">
+		                    <input type="hidden" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy']?>" required></td>
+
 		            </tr>
 
 		            <tr>
@@ -63,7 +68,6 @@ if (@$_SESSION['user']) {
 
 		                            <td>
 		                            <select class="form-control" name="bulan" required>
-		                                <option><?php echo $d['bulan']?></option>
 		                                <option value="januari">januari</option>
 		                                <option value="februari">februari</option>
 		                                <option value="maret">maret</option>
@@ -82,26 +86,41 @@ if (@$_SESSION['user']) {
 		                            <td>
 		                                <input name="tahun" type="text" class="form-control" placeholder="tahun" id="tahun" autocomplete="off" value="<?php echo $d['tahun']?>" required>
 		                            </td>
-		            </tr>
-		                    </tbody>
-		                </table>
-		            </tr>
-		            <tr>
-
-		                <td><input type="hidden" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'];?>"></td>
+		                            </tr>
+		                        </tbody>
+		                    </table>
+		                </td>
 		            </tr>
 
 		            <tr>
-		                <td>Detail Pengeluaran</td>
-		                <td><input type="text" class="form-control" name="detail" value="<?php echo $d['detail']?>" required></td>
+		                <td>Nama Pelanggan</td>
+		                <td><input type="text" class="form-control" name="nama_pelanggan" value="<?php echo $d['nama_pelanggan']?>" required></td>
 		            </tr>
 
 		            <tr>
-		                <td>Jumlah</td>
-		                <td><input type="text" class="form-control" name="jumlah" value="<?php echo $d['jumlah']?>" required></td>
+		                <td>Paket</td>
+		                <td><input type="text" class="form-control" name="paket" value="<?php echo $d['paket']?>" required></td>
 		            </tr>
 
+		            <tr>
+		                <td>Nomor Invoice</td>
+		                <td><input type="text" class="form-control" name="no_invoice" value="<?php echo $d['no_invoice']?>" required></td>
+		            </tr>
 
+		            <tr>
+		                <td>Income</td>
+		                <td><input type="text" class="form-control" name="income" value="<?php echo $d['income']?>" id="txt1" onkeyup="sum();"  required></td>
+		            </tr>
+
+		            <tr>
+		                <td>Share Office</td>
+		                <td><input type="text" class="form-control" name="share_office" value="<?php echo $d['share_office']?>" id="txt2" onkeyup="sum();" required></td>
+		            </tr>
+
+		            <tr>
+		                <td>Share Proxy</td>
+		                <td><input name="share_proxy" type="text" class="form-control" placeholder="share_proxy" autocomplete="off" value="<?php echo $d['share_proxy']?>" id="txt3" required></td>
+		            </tr>
 
 		            <tr>
 		                <td></td>
@@ -112,6 +131,33 @@ if (@$_SESSION['user']) {
 		<?php
 	}
 	?>
+	<script>
+	function sum() {
+	      var txtFirstNumberValue = document.getElementById('txt1').value;
+	      var txtSecondNumberValue = document.getElementById('txt2').value;
+	      var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+	      if (!isNaN(result)) {
+	         document.getElementById('txt3').value = result;
+	      }
+	}
+	</script>
+
+	<script type="text/javascript">
+	    function validasi() {
+	        var tanggal = document.getElementById("tanggal").value;
+	        var nama_pelanggan = document.getElementById("nama_pelanggan").value;
+	        var paket = document.getElementById("paket").value;
+	        var no_invoice = document.getElementById("no_invoice").value;
+	        var income = document.getElementById("income").value;
+	        var share_office = document.getElementById("share_office").value;
+	        if (tanggal != "" && nama_pelanggan != "" && paket!="" && no_invoice !="" && income != "") {
+	            return true;
+	        }else{
+	            alert('Anda harus mengisi data dengan lengkap !');
+	        }
+	    }
+	</script>
+
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/bootstrap-datepicker.js"></script>
 	<script> $(".input-group.date").datepicker({autoclose: true, todayHighlight: true}); </script>
@@ -122,12 +168,11 @@ if (@$_SESSION['user']) {
 	<?php require_once 'footer.php';?>
 	</div>
 		</div>
-
 	</div>
 
 
 	<?php
 } else {
-	header("location:../index.php");
+	header("location:index.php");
 }
 ?>

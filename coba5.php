@@ -2,9 +2,9 @@
 
     @session_start();
 
-    include "../koneksi.php";
+    include "koneksi.php";
 
-    if (@$_SESSION['user']) {     
+    if (@$_SESSION['admin']) {     
  ?>
 
 <?php require_once 'header.php'; ?>
@@ -12,38 +12,71 @@
 
 
 <div class="container">
-<div class="panel panel-success" style="padding-top: 100px">
+        <div class="panel panel-success" style="padding-top: 100px">
 
         
 
         <div class="panel-body">
 <?php 
-$id = $_SESSION['user']; 
-$user = mysqli_query($koneksi, "select * from user where id ='$id'");
-while($u = mysqli_fetch_assoc($user)) { ?>
+$id = $_SESSION['admin']; 
+
+?>
             <center>
-                <h2><small>Hai</small> <?php echo $u['username'] ?> <small>Selamat Datang di Halaman Proxy</small></h2>
+                <h2><small>Hai</small> <?php  echo $id; ?> <small>Selamat Datang di Halaman Administrator</small></h2>
             </center>
-<?php } ?>
+
         
         </div>
 
         
-</div>
+        </div>
+<?php
+// $id = $_SESSION['admin'];
 
+function buulan($buulan){
+    switch ($buulan) {
+        case 1: $buulan="januari";
+            break;
+        case 2: $buulan="februari";
+            break;    
+        case 3: $buulan="maret";
+            break;
+        case 4: $buulan="april";
+            break;
+        case 5: $buulan="mei";
+            break;
+        case 6: $buulan="juni";
+            break;
+        case 7: $buulan="juli";
+            break;
+        case 8: $buulan="agustus";
+            break;
+        case 9: $buulan="september";
+            break;
+        case 10: $buulan="oktober";
+            break;
+        case 11: $buulan="november";
+            break;
+        case 12: $buulan="desember";
+            break;                                    
 
-<div class="panel panel-success">
-            <?php
-$id = $_SESSION['user'];
+    }
+ return $buulan;   
+}
+
 $tahun = date('Y');
-$bulan       = mysqli_query($koneksi, "SELECT DISTINCT bulan FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' order by id_proxy asc");
-$omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' group by bulan asc");
+$bulan_angka = date('m');
+$bulan_sekarang = buulan($bulan_angka);
+$bulan       = mysqli_query($koneksi, "SELECT DISTINCT nama_proxy FROM pemasukkan WHERE tahun='$tahun' order by id_proxy asc");
+$omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE bulan='$bulan_sekarang' AND tahun='$tahun' group by nama_proxy asc");
 ?>
-        <div class="panel-heading">
-            <center><h1><label>Statistik Omset Proxy Perbulan</label></h1></center>  
+        <div class="panel panel-success">
+            <div class="panel-heading">
+            <center><h1><label>Statistik Omset Proxy Bulan <?php echo $bulan_sekarang; ?></label></h1></center>
+            
         </div>
             <div class="panel-body">
-                <div class="">
+                <div class="container">
             <canvas id="myChart" width="100" height="20"></canvas>
         </div>
         <script>
@@ -51,7 +84,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($bulan)) { echo '"' . $b['bulan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($bulan)) { echo '"' . $b['nama_proxy'] . '",';}?>],
                     datasets: [{
                             label: 'Omset',
                             data: [<?php while ($p = mysqli_fetch_array($omset)) { echo '"' . $p['total'] . '",';}?>],
@@ -98,8 +131,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
             });
         </script>
             </div>
-</div>
-
+        </div>
 </div>
 
 
@@ -110,6 +142,6 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
 </html>
 <?php 
 }else{
-        header("location:../index.php");
+        header("location:index.php");
 }
 ?>

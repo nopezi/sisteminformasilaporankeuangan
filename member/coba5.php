@@ -33,8 +33,10 @@
 <?php
 $id = $_SESSION['user'];
 $tahun = date('Y');
+$bulan_bulan = "januari";
+
 $bulan       = mysqli_query($koneksi, "SELECT DISTINCT bulan FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' order by id_proxy asc");
-$omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' order by id_proxy asc");
+$omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE tahun='$tahun' AND id_proxy='$id' GROUP by bulan asc");
 ?>
         <div class="panel panel-success">
             <div class="panel-heading">
@@ -43,7 +45,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
         </div>
             <div class="panel-body">
                 <div class="container">
-            <canvas id="myChart" width="100" height="20"></canvas>
+            <canvas id="myChart" width="100" height="100"></canvas>
         </div>
         <script>
             var ctx = document.getElementById("myChart");
@@ -52,15 +54,9 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
                 data: {
                     labels: [<?php while ($b = mysqli_fetch_array($bulan)) { echo '"' . $b['bulan'] . '",';}?>],
                     datasets: [{
-                            label: 'Omset',
+                            label: '# of Votes',
                             data: [<?php while ($p = mysqli_fetch_array($omset)) { echo '"' . $p['total'] . '",';}?>],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -74,13 +70,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 159, 64, 1)'
                             ],
                             borderWidth: 1
                         }]
@@ -96,7 +86,7 @@ $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHE
                 }
             });
         </script>
-            </div>
+
         </div>
 </div>
 

@@ -84,20 +84,7 @@ input.error {border-color:red;}
 
 </form>
 <br/>
-<?php 
-if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
-    $bulan=mysqli_real_escape_string($koneksi, $_GET['bulan']);
-    $tahun=mysqli_real_escape_string($koneksi, $_GET['tahun']);
-    $tg="lap_pengeluaran.php?bulan='$bulan'&tahun='$tahun'";
-?>
 
-<a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Cetak</a>
-
-<?php
-}else{
-    $tg="lap_pengeluaran.php";
-}
-?>
 
 
 
@@ -518,7 +505,6 @@ function sum() {
       }
 }
 </script>                                                                  
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

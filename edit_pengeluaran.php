@@ -23,13 +23,13 @@
 
 <div class="panel-body">
 <h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
-<a class="btn" href="pengeluaran.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
 $id_keluar=mysqli_real_escape_string($koneksi, $_GET['id_keluar']);
 $det=mysqli_query($koneksi, "select * from keluar where id_keluar='$id_keluar'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
-?>                  
+?>
+<a class="btn" href="finance.php?id_proxy=<?php echo $d['id_proxy'] ?>"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>                    
     <form action="update_pengeluaran.php" method="post">
         <table class="table table-hover ">
             <tr>
@@ -40,7 +40,47 @@ while($d=mysqli_fetch_array($det)){
             
             <tr>
                 <td>Tanggal</td>
-                <td><input id="tanggal" type="text" class="form-control" name="tanggal" value="<?php echo $d['tanggal'] ?>"></td>
+                <td><table>
+                        <thead>
+                            <tr>
+                                <th><label>Tanggal</label></th>
+                                <th><label>Bulan</label></th>
+                                <th>Tahun</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>
+                            <div class="input-group date " data-date="" data-date-format="dd">
+                            <input class="form-control" type="text" name="tanggal" placeholder="masukkan tanggal" readonly="readonly" value="<?php echo $d['tanggal'] ?>" required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                            </td>
+
+                            <td>
+                            <select class="form-control" name="bulan" required>
+                                <option><?php echo $d['bulan'] ?></option>
+                                <option value="januari">januari</option>
+                                <option value="februari">februari</option>
+                                <option value="maret">maret</option>
+                                <option value="april">april</option>
+                                <option value="mei">mei</option>
+                                <option value="juni">juni</option>
+                                <option value="juli">juli</option>
+                                <option value="agustus">agustus</option>
+                                <option value="september">september</option>
+                                <option value="oktober">oktober</option>
+                                <option value="november">november</option>
+                                <option value="desember">desember</option>
+                            </select>
+                            </td>
+
+                            <td>
+                                <input name="tahun" type="text" class="form-control" placeholder="tahun" id="tahun" autocomplete="off" value="<?php echo $d['tahun'] ?>" required>
+                            </td>
+                            </tr>
+                    </tbody>
+                </table>
             </tr>
 
             <tr>
