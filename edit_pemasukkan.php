@@ -117,6 +117,13 @@ while($d=mysqli_fetch_array($det)){
             <tr>
                 <td>Share Proxy</td>
                 <td><input name="share_proxy" type="text" class="form-control" placeholder="share_proxy" autocomplete="off" value="<?php echo $d['share_proxy'] ?>" id="txt3" required></td>
+            </tr>
+
+            <tr>
+                <td>Keterangan dan Lain-Lain</td>
+                <td>
+                    <textarea name="lain" class="form-control" placeholder="isi Jika ada Keterangan lain jika tidak kosongkan saja"><?php echo $d['lain'] ?></textarea>
+                </td>
             </tr>   
             
             <tr>

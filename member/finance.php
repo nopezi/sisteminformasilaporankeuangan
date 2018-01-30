@@ -117,7 +117,8 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
             <th>Nomor Invoice</th>
             <th>Income</th>
             <th>Share Office</th>
-            <th>Share Proxy</th>         
+            <th>Share Proxy</th>
+            <th>Keterangan dan Lain-Lain</th>         
             <th>Opsi</th>
     </tr>
     </thead>
@@ -149,6 +150,7 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
               <?php $share_proxy =  $b['income'] - $b['share_office']; ?>  
                 Rp.<?php echo number_format($share_proxy); ?>,-
             </td>
+            <td><?php echo ($b['lain']) ?></td>
                                     
             <td>        
                 <a href="edit_pemasukkan.php?id_masuk=<?php echo $b['id_masuk']; ?>" class="btn btn-warning">Edit</a>
@@ -483,17 +485,22 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
 
                         <div class="form-group">
                             <label>Income</label>
-                            <input name="income" type="text" class="form-control" placeholder="income" autocomplete="off" id="txt1" onkeyup="sum();" required>
+                            <input name="income" type="text" class="form-control" placeholder="masukkan angka saja" autocomplete="off" id="txt1" onkeyup="sum();" required>
                         </div>
 
                         <div class="form-group">
                             <label>Share Office</label>
-                            <input name="share_office" type="text" class="form-control" placeholder="share_office" autocomplete="off" id="txt2" onkeyup="sum();" required>
+                            <input name="share_office" type="text" class="form-control" placeholder="masukkan angka saja" autocomplete="off" id="txt2" onkeyup="sum();" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Share Proxy</label>
-                            <input name="share_proxy" type="text" class="form-control" placeholder="share_proxy" autocomplete="off" id="txt3" required>
+                            
+                            <input name="share_proxy" type="hidden" class="form-control" placeholder="00000" autocomplete="off" id="txt3" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Keterangan dan Lain-Lain</label>
+                            <textarea name="lain" class="form-control" placeholder="isi Jika ada Keterangan lain jika tidak kosongkan saja"></textarea>
                         </div>
                         <script>
 function sum() {

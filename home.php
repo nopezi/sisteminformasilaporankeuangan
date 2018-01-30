@@ -41,49 +41,146 @@ $id = $_SESSION['admin'];
 
         
         </div>
+
+
+
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <form action="" method="get">
+    <div class="input-group col-md-5 col-md-offset-7">
+        
+        
+    <table>
+
+        <tr>
+            <td><label>Pilih Keduanya</label></td>
+        </tr>
+        <tr>
+
+          <td>
+            
+            <select class="form-control" name="bulan" >
+
+            <option>Bulan</option>
+            <?php 
+            $pil=mysqli_query($koneksi, "select distinct bulan from pemasukkan order by bulan desc");
+            while($p=mysqli_fetch_array($pil)){
+                ?>
+                <option><?php echo $p['bulan'] ?></option>
+                <?php
+            }
+            ?>          
+            </select>
+        
+            </td>
+            <td width="20"> <b>-><b> </td>
+            <td>
+            <select class="form-control" name="tahun" >
+
+            <option>Tahun</option>
+            <?php 
+            $pil=mysqli_query($koneksi, "select distinct tahun from pemasukkan order by tahun desc");
+            while($p=mysqli_fetch_array($pil)){
+                ?>
+                <option><?php echo $p['tahun'] ?></option>
+                <?php
+            }
+            ?>          
+            </select>
+                </td>
+
+                <td>
+                <input type="submit" class="btn btn-primary" value="ok" onchange="this.form.submit()">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</form>
+<?php
+$tahun2 = date('Y'); 
+if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){ ?>
+<center><h1><label>Statistik Omset Proxy Bulan <?php echo $_GET['bulan']." ".$_GET['tahun']; ?></label></h1></center>
+<?php    }else{ 
+$bulan_angka = array(
+                '01' => 'januari',
+                '02' => 'FEBRUARI',
+                '03' => 'MARET',
+                '04' => 'APRIL',
+                '05' => 'MEI',
+                '06' => 'JUNI',
+                '07' => 'JULI',
+                '08' => 'AGUSTUS',
+                '09' => 'SEPTEMBER',
+                '10' => 'OKTOBER',
+                '11' => 'NOVEMBER',
+                '12' => 'DESEMBER',
+        );
+        $bulan_angka[date('m')];
+        // $tahun = date('m');
+        $bulan_kini = strtolower($bulan_angka[date('m')]); 
+
+
+?>
+<center><h1><label>Statistik Omset Proxy Bulan <?php echo $bulan_kini."".$tahun2; ?></label></h1></center>
+<?php } ?>
 <?php
 // $id = $_SESSION['admin'];
 
-function buulan($buulan){
-    switch ($buulan) {
-        case 1: $buulan="januari";
-            break;
-        case 2: $buulan="februari";
-            break;    
-        case 3: $buulan="maret";
-            break;
-        case 4: $buulan="april";
-            break;
-        case 5: $buulan="mei";
-            break;
-        case 6: $buulan="juni";
-            break;
-        case 7: $buulan="juli";
-            break;
-        case 8: $buulan="agustus";
-            break;
-        case 9: $buulan="september";
-            break;
-        case 10: $buulan="oktober";
-            break;
-        case 11: $buulan="november";
-            break;
-        case 12: $buulan="desember";
-            break;                                    
+
+
+if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){
+        $bulan=mysqli_real_escape_string($koneksi, $_GET['bulan']);
+        $tahun=mysqli_real_escape_string($koneksi, $_GET['tahun']);
+        $bulan_angka = array(
+                '01' => 'januari',
+                '02' => 'FEBRUARI',
+                '03' => 'MARET',
+                '04' => 'APRIL',
+                '05' => 'MEI',
+                '06' => 'JUNI',
+                '07' => 'JULI',
+                '08' => 'AGUSTUS',
+                '09' => 'SEPTEMBER',
+                '10' => 'OKTOBER',
+                '11' => 'NOVEMBER',
+                '12' => 'DESEMBER',
+        );
+        $bulan_angka[date('m')];
+        // $tahun = date('m');
+        $bulan_kini = strtolower($bulan_angka[date('m')]);    
+        $bulan = mysqli_query($koneksi, "SELECT DISTINCT nama_proxy FROM pemasukkan WHERE tahun='$tahun' order by id_proxy asc");
+        $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE bulan='$bulan_kini' AND tahun='$tahun' group by nama_proxy asc");
+    }else{
+
+$bulan_angka = array(
+                '01' => 'januari',
+                '02' => 'FEBRUARI',
+                '03' => 'MARET',
+                '04' => 'APRIL',
+                '05' => 'MEI',
+                '06' => 'JUNI',
+                '07' => 'JULI',
+                '08' => 'AGUSTUS',
+                '09' => 'SEPTEMBER',
+                '10' => 'OKTOBER',
+                '11' => 'NOVEMBER',
+                '12' => 'DESEMBER',
+        );
+        $bulan_angka[date('m')];
+        // $tahun = date('m');
+        $bulan_kini = strtolower($bulan_angka[date('m')]);
+         
+        $bulan = mysqli_query($koneksi, "SELECT DISTINCT nama_proxy FROM pemasukkan WHERE tahun='$tahun2' order by id_proxy asc");
+        $omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE bulan='$bulan_kini' AND tahun='$tahun2' group by nama_proxy asc");
+
 
     }
- return $buulan;   
-}
 
-$tahun = date('Y');
-$bulan_angka = date('m');
-$bulan_sekarang = buulan($bulan_angka);
-$bulan       = mysqli_query($koneksi, "SELECT DISTINCT nama_proxy FROM pemasukkan WHERE tahun='$tahun' order by id_proxy asc");
-$omset = mysqli_query($koneksi, "SELECT SUM(income) as total FROM pemasukkan WHERE bulan='$bulan_sekarang' AND tahun='$tahun' group by nama_proxy asc");
+
 ?>
-        <div class="panel panel-success">
-            <div class="panel-heading">
-            <center><h1><label>Statistik Omset Proxy Bulan <?php echo $bulan_sekarang; ?></label></h1></center>
+            
             
         </div>
             <div class="panel-body">

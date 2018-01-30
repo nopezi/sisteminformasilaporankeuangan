@@ -136,7 +136,8 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){ ?>
             <th>Nomor Invoice</th>
             <th>Income</th>
             <th>Share Office</th>
-            <th>Share Proxy</th>         
+            <th>Share Proxy</th>
+            <th>Keterangan</th>         
             <th>Opsi</th>
     </tr>
     </thead>
@@ -168,6 +169,7 @@ if(isset($_GET['bulan']) AND isset( $_GET['tahun'])){ ?>
               <?php $share_proxy =  $b['income'] - $b['share_office']; ?>  
                 Rp.<?php echo number_format($share_proxy); ?>,-
             </td>
+            <td><?php echo $b['lain'] ?></td>
                                     
             <td>        
                 <a href="edit_pemasukkan.php?id_masuk=<?php echo $b['id_masuk']; ?>" class="btn btn-warning">Edit</a>

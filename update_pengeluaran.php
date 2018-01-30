@@ -1,5 +1,5 @@
 <?php 
-include '../koneksi.php';
+include 'koneksi.php';
 $id_keluar=$_POST['id_keluar'];
 $id_proxy=$_POST['id_proxy'];
 $tanggal=$_POST['tanggal'];
@@ -15,7 +15,8 @@ if($tanggal == "" || $bulan == ""){
 }else{
 mysqli_query($koneksi, "update keluar set
 			id_proxy='$id_proxy', 
-			tanggal='$tanggal', 
+			tanggal='$tanggal',
+			tahun='$tahun', 
 			nama_proxy='$nama_proxy', 
 			detail='$detail', 
 			jumlah='$jumlah'

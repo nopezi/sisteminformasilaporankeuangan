@@ -1,37 +1,40 @@
 <?php 
-    @session_start();
+
+
+@session_start();
 
     include "koneksi.php";
 
-    if (@$_SESSION['admin']) {
-
-    include 'header.php';   
-
+    if (@$_SESSION['admin']) { 
 ?>
+<?php require_once 'header.php'; ?>
+<style type="text/css" media="screen">
 
+/** 
+Css validasi
+**/
+.error{color:red;}
+label.error {margin-top:6px;}
+input.error {border-color:red;}
+</style>
 
-
-
-<!-- end Menu Navbar -->
-
-
-
-<body>
-
+<script>
+    $("#form-registrasi").validate();
+</script>
 <div class="container">
-<div class="panel panel-success" style="padding-top: 100px">
-
-<div class="panel-body">
+    <div class="panel panel-primary" style="padding-top: 100px">
+        <div class="panel-body">
 <h3><span class="glyphicon glyphicon-briefcase"></span>  Edit Pengeluaran</h3>
+
 
 <?php
 $id_keluar=mysqli_real_escape_string($koneksi, $_GET['id_keluar']);
 $det=mysqli_query($koneksi, "select * from keluar where id_keluar='$id_keluar'")or die(mysql_error());
 while($d=mysqli_fetch_array($det)){
-?>
-<a class="btn" href="finance.php?id_proxy=<?php echo $d['id_proxy'] ?>"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>                    
+?>                  
+<a class="btn" href="finance.php?id_proxy=<?php echo $d['id_proxy'] ?>"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>  
     <form action="update_pengeluaran.php" method="post">
-        <table class="table table-hover ">
+        <table class="table table-hover table-bordered">
             <tr>
                 <td></td>
                 <td><input type="hidden" name="id_keluar" value="<?php echo $d['id_keluar'] ?>"></td>
@@ -78,24 +81,23 @@ while($d=mysqli_fetch_array($det)){
                             <td>
                                 <input name="tahun" type="text" class="form-control" placeholder="tahun" id="tahun" autocomplete="off" value="<?php echo $d['tahun'] ?>" required>
                             </td>
-                            </tr>
+            </tr>
                     </tbody>
                 </table>
             </tr>
-
             <tr>
-                <td>Nama Proxy</td>
-                <td><input id="nama_proxy" type="text" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy'] ?>"></td>
+                
+                <td><input type="hidden" class="form-control" name="nama_proxy" value="<?php echo $d['nama_proxy']; ?>"></td>
             </tr>
 
             <tr>
                 <td>Detail Pengeluaran</td>
-                <td><input type="text" class="form-control" name="detail" value="<?php echo $d['detail'] ?>"></td>
+                <td><input type="text" class="form-control" name="detail" value="<?php echo $d['detail'] ?>" required></td>
             </tr>
 
             <tr>
                 <td>Jumlah</td>
-                <td><input type="text" class="form-control" name="jumlah" value="<?php echo $d['jumlah'] ?>"></td>
+                <td><input type="text" class="form-control" name="jumlah" value="<?php echo $d['jumlah'] ?>" required></td>
             </tr>
 
             
@@ -111,36 +113,20 @@ while($d=mysqli_fetch_array($det)){
 ?>
 
 
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+<script> $(".input-group.date").datepicker({autoclose: true, todayHighlight: true}); </script>   
 
-
-		
+        
 </div>
 
-<?php require_once 'footer.php'; ?>	
+<?php require_once 'footer.php'; ?>
+    
 </div>
+    </div>
+
 </div>
 
-
-</body>
-
-
-<script src="jquery/jquery-1.8.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script type="text/javascript">
-            $(document).ready(function () {
-                $('#tanggal').datepicker({
-                 //merubah format tanggal datepicker ke dd-mm-yyyy
-                    format: "yyyy/mm/dd",
-                    //aktifkan kode dibawah untuk melihat perbedaanya, disable baris perintah diatasa
-                    //format: "dd-mm-yyyy",
-                    autoclose: true
-                });
-            });
-</script>
-
-</html>
 
 <?php 
 }else{

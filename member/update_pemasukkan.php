@@ -12,6 +12,7 @@ $no_invoice=$_POST['no_invoice'];
 $income=$_POST['income'];
 $share_office=$_POST['share_office'];
 $share_proxy=$_POST['share_proxy'];
+$lain=$_POST['lain'];
 
 
 
@@ -29,7 +30,8 @@ if($id_masuk == "" || $nama_pelanggan == "" || $no_invoice == ""){
 			no_invoice='$no_invoice',
 			income='$income',
 			share_office='$share_office',
-			share_proxy='$share_proxy'
+			share_proxy='$share_proxy',
+			lain='$lain'
 			where id_masuk='$id_masuk'");
 header("location:finance.php");
 }
